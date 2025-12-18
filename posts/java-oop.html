@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 Tính chất OOP trong Java - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #e74c3c;">4 Trụ cột của Lập trình hướng đối tượng (OOP)</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> Java Core</span> |
+                <span><i class="fas fa-calendar"></i> 02/06/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> Java là ngôn ngữ thuần hướng đối tượng. Để code Java tốt, bạn không chỉ cần nhớ cú pháp mà phải tư duy theo OOP. Mọi thứ xoay quanh 4 tính chất: Đóng gói, Kế thừa, Đa hình và Trừu tượng.</p>
+
+                <h3>1. Tính Đóng gói (Encapsulation)</h3>
+                <p>Là việc che giấu dữ liệu bên trong object và chỉ cho phép truy cập thông qua các phương thức công khai (Getter/Setter).</p>
+                <ul>
+                    <li><strong>Mục đích:</strong> Bảo vệ dữ liệu, không cho bên ngoài sửa đổi tùy tiện.</li>
+                    <li><strong>Cách dùng:</strong> Đặt thuộc tính là <code>private</code>, phương thức là <code>public</code>.</li>
+                </ul>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+public class BankAccount {
+    private double balance; // Người ngoài không thể sửa trực tiếp
+
+    public void deposit(double amount) {
+        if (amount > 0) balance += amount; // Kiểm soát logic nạp tiền
+    }
+}
+                </pre>
+
+                <h3>2. Tính Kế thừa (Inheritance)</h3>
+                <p>Cho phép class con tận dụng lại (kế thừa) các thuộc tính và phương thức của class cha. Giúp giảm lặp code (DRY - Don't Repeat Yourself).</p>
+                <ul>
+                    <li><strong>Từ khóa:</strong> <code>extends</code>.</li>
+                    <li><strong>Lưu ý:</strong> Java chỉ hỗ trợ đơn kế thừa (một con chỉ có một cha).</li>
+                </ul>
+
+                <h3>3. Tính Đa hình (Polymorphism)</h3>
+                <p>Một hành động có thể được thực hiện theo nhiều cách khác nhau. Đa hình thể hiện qua 2 cơ chế:</p>
+                <ul>
+                    <li><strong>Overloading (Nạp chồng):</strong> Cùng tên hàm nhưng khác tham số (Trong cùng 1 class). <br><em>Ví dụ:</em> <code>tinhTong(int a, int b)</code> và <code>tinhTong(double a, double b)</code>.</li>
+                    <li><strong>Overriding (Ghi đè):</strong> Class con viết lại hàm của class cha (Khác class). <br><em>Ví dụ:</em> Cha là <code>DongVat</code> có hàm <code>keu()</code>, con là <code>Cho</code> ghi đè lại thành "Gâu gâu", <code>Meo</code> ghi đè thành "Meo meo".</li>
+                </ul>
+
+                <h3>4. Tính Trừu tượng (Abstraction)</h3>
+                <p>Là việc ẩn đi các chi tiết cài đặt phức tạp, chỉ hiển thị những tính năng cần thiết cho người dùng. Nó tập trung vào câu hỏi: <em>"Đối tượng này làm được gì?"</em> thay vì <em>"Nó làm thế nào?"</em>.</p>
+                <p>Trong Java, trừu tượng thể hiện qua:</p>
+                <ul>
+                    <li><strong>Abstract Class:</strong> Class có thể chứa hàm trừu tượng (không có thân hàm) và hàm thường.</li>
+                    <li><strong>Interface:</strong> Bản thiết kế (blueprint) chỉ chứa các phương thức rỗng, buộc các class khác phải implements (triển khai) nó.</li>
+                </ul>
+                
+
+[Image of OOP concept diagram]
+
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
