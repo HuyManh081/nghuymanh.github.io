@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống tên miền (DNS) - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #3498db;">DNS: Danh bạ điện thoại của Internet</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> Networking Basics</span> |
+                <span><i class="fas fa-calendar"></i> 24/05/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> Con người rất giỏi nhớ tên (như "google.com", "facebook.com") nhưng lại rất tệ trong việc nhớ các con số (như "142.250.183.206"). Ngược lại, máy tính chỉ hiểu các con số (IP Address). <strong>DNS (Domain Name System)</strong> chính là "người phiên dịch" đứng giữa để giải quyết vấn đề này.</p>
+
+                <h3>1. DNS hoạt động như thế nào?</h3>
+                <p>Khi bạn gõ <code>www.example.com</code> vào trình duyệt, một hành trình tìm kiếm IP sẽ diễn ra như sau:</p>
+                
+                <ol>
+                    <li><strong>Browser Cache:</strong> Trình duyệt kiểm tra xem bạn đã truy cập trang này gần đây chưa. Nếu có IP rồi thì vào luôn.</li>
+                    <li><strong>Resolver (ISP):</strong> Nếu không có, máy tính hỏi DNS Server của nhà mạng (ISP) hoặc Google DNS (8.8.8.8).</li>
+                    <li><strong>Root Server (.):</strong> Nếu Resolver không biết, nó hỏi Root Server (Máy chủ gốc - quản lý dấu chấm cuối cùng). Root sẽ chỉ đường đến máy chủ quản lý đuôi <code>.com</code>.</li>
+                    <li><strong>TLD Server (.com):</strong> Máy chủ TLD (Top Level Domain) sẽ chỉ đường đến máy chủ quản lý tên miền <code>example.com</code>.</li>
+                    <li><strong>Authoritative Server:</strong> Đây là máy chủ chứa thông tin chính thức. Nó trả về IP chính xác của website cho bạn.</li>
+                </ol>
+
+                <h3>2. Các loại bản ghi DNS (DNS Records) phổ biến</h3>
+                <p>Khi cấu hình tên miền, bạn sẽ gặp các loại bản ghi sau:</p>
+                <ul>
+                    <li><strong>A Record (Address):</strong> Quan trọng nhất. Dùng để ánh xạ tên miền sang địa chỉ <strong>IPv4</strong>. <br><em>Ví dụ: example.com -> 192.0.2.1</em></li>
+                    <li><strong>AAAA Record:</strong> Tương tự A Record nhưng dành cho địa chỉ <strong>IPv6</strong>.</li>
+                    <li><strong>CNAME (Canonical Name):</strong> Tạo bí danh (Alias) cho một tên miền khác. <br><em>Ví dụ: www.example.com trỏ về example.com.</em></li>
+                    <li><strong>MX Record (Mail Exchange):</strong> Chỉ định máy chủ nào sẽ chịu trách nhiệm nhận Email cho tên miền đó (Dùng cho Gmail, Outlook...).</li>
+                    <li><strong>TXT Record:</strong> Dùng để chứa văn bản xác thực (ví dụ xác minh chủ sở hữu web với Google Search Console).</li>
+                </ul>
+
+                <h3>3. DNS Caching (Bộ nhớ đệm)</h3>
+                <p>Để không phải thực hiện quy trình hỏi han dài dòng (Root -> TLD -> Authoritative) mỗi lần bạn F5 trang web, thông tin DNS sẽ được lưu tạm (Cache) ở nhiều nơi:</p>
+                <ul>
+                    <li>Trên trình duyệt của bạn.</li>
+                    <li>Trên hệ điều hành (Windows/Mac).</li>
+                    <li>Trên Router wifi.</li>
+                    <li>Trên máy chủ DNS của nhà mạng.</li>
+                </ul>
+                <p>Đó là lý do tại sao khi bạn đổi IP của website, có thể mất tới 24-48 giờ để toàn bộ người dùng trên thế giới nhận diện được IP mới (thời gian này gọi là TTL - Time To Live).</p>
+
+                <h3>4. Công cụ kiểm tra DNS</h3>
+                <p>Là một kỹ sư mạng hoặc lập trình viên, bạn nên biết dùng lệnh <code>nslookup</code> (trên Windows) hoặc <code>dig</code> (trên Linux/Mac) để kiểm tra xem một tên miền đang trỏ về IP nào.</p>
+                <pre style="background:#eee; padding:10px; border-radius:5px;">C:\> nslookup google.com</pre>
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
