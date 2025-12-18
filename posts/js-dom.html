@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #d4ac0d;">Làm chủ DOM: Cầu nối giữa JS và HTML</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> JavaScript Core</span> |
+                <span><i class="fas fa-calendar"></i> 30/05/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> JavaScript sẽ rất nhàm chán nếu nó chỉ chạy ngầm. Để tạo ra các hiệu ứng như Click nút đổi màu, Form validate, Modal hiện ra... JS cần tương tác với HTML. Cơ chế đó gọi là DOM (Document Object Model).</p>
+
+                <h3>1. DOM Tree là gì?</h3>
+                <p>Trình duyệt xem trang web của bạn như một cái cây (Tree). Gốc là <code>document</code>, các nhánh là thẻ <code>&lt;html&gt;</code>, <code>&lt;body&gt;</code>, và lá là các thẻ <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>.</p>
+                
+
+                <h3>2. Truy xuất phần tử (Selecting Elements)</h3>
+                <p>Trước khi sửa cái gì, bạn phải "nắm đầu" được nó đã.</p>
+                <ul>
+                    <li><code>document.getElementById('id')</code>: Nhanh nhất, lấy theo ID.</li>
+                    <li><code>document.querySelector('.class')</code>: Linh hoạt nhất, lấy phần tử đầu tiên khớp với CSS Selector.</li>
+                    <li><code>document.querySelectorAll('div')</code>: Lấy tất cả các thẻ div (trả về NodeList).</li>
+                </ul>
+
+                <h3>3. Thao tác nội dung và Style</h3>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+const title = document.querySelector('h1');
+
+// 1. Thay đổi nội dung
+title.innerText = "Xin chào JavaScript!";
+title.innerHTML = "Xin chào <span>JS</span>"; // Hiểu cả thẻ HTML
+
+// 2. Thay đổi Style (CSS)
+title.style.color = "red";
+title.style.backgroundColor = "yellow";
+
+// 3. Thêm/Xóa Class (Khuyên dùng hơn sửa style trực tiếp)
+title.classList.add('active');
+title.classList.remove('hidden');
+                </pre>
+
+                <h3>4. Lắng nghe sự kiện (Event Listener)</h3>
+                <p>Làm sao để biết khi nào người dùng bấm chuột?</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+const btn = document.getElementById('myBtn');
+
+btn.addEventListener('click', function(e) {
+    alert("Bạn vừa bấm nút!");
+    console.log(e.target); // Xem ai bị bấm
+});
+                </pre>
+                <p>Các sự kiện phổ biến: <code>click</code>, <code>submit</code> (form), <code>keydown</code> (bàn phím), <code>scroll</code> (cuộn trang).</p>
+
+                <h3>5. Tạo và Xóa phần tử</h3>
+                <p>Bạn có thể tạo ra HTML mới hoàn toàn bằng JS mà không cần viết trong file .html:</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+const newDiv = document.createElement('div');
+newDiv.innerText = "Tôi là thẻ mới";
+document.body.appendChild(newDiv); // Gắn vào body
+                </pre>
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
