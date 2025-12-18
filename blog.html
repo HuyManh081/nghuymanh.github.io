@@ -1,45 +1,265 @@
-<nav class="navbar">
-    <div class="logo">Huy Mạnh</div> <ul class="nav-links">
-        <li><a href="index.html">Trang chủ</a></li>
-        <li><a href="about.html">Cá nhân</a></li>
-        <li><a href="blog.html">Bài viết</a></li>
-        <li><a href="contact.html">Liên hệ</a></li>
-    </ul>
-</nav>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Bài viết & Kiến thức</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Kiến Thức - Huy Mạnh</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="about.html">Cá nhân</a></li>
+            <li><a href="blog.html" class="active">Bài viết</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
     <main class="container">
-        <h1>Tổng hợp kiến thức</h1>
+        <div class="blog-header">
+            <h1>Kho Tàng Kiến Thức</h1>
+            <p>Tổng hợp những bài viết chuyên sâu về Networking, JavaScript và Java</p>
+        </div>
 
-        <section class="knowledge-block js-block">
-            <h2>JavaScript Essentials 1 & 2</h2>
-            <article>
-                <h3>1. Các kiểu dữ liệu & Biến</h3>
-                <p>Phân biệt `let`, `const`, `var` và các kiểu dữ liệu nguyên thủy trong JS...</p>
-            </article>
-            <article>
-                <h3>2. Xử lý bất đồng bộ (Async/Await)</h3>
-                <p>Cách Node.js xử lý non-blocking I/O, ứng dụng trong việc gọi API mạng...</p>
-            </article>
+        <section class="category-section">
+            <h2 class="category-title"><i class="fas fa-network-wired"></i> Mạng Máy Tính (Networking)</h2>
+            <div class="blog-grid">
+
+                <article class="blog-card net-card">
+                    <span class="tag tag-net">Networking</span>
+                    <h3>1. Mô hình OSI 7 Lớp: Giải thích chi tiết & Dễ hiểu</h3>
+                    <p class="summary">Tại sao khi gửi một email, nó lại đi qua 7 lớp? Phân tích chức năng từng lớp từ Physical đến Application.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content">
+                            <p><strong>Giới thiệu:</strong> Mô hình OSI (Open Systems Interconnection) là kim chỉ nam cho mọi giao thức mạng...</p>
+                            <p><strong>Lớp 1: Physical:</strong> Chịu trách nhiệm truyền tải bit qua đường truyền vật lý...</p>
+                            <p><strong>Lớp 2: Data Link:</strong> Đóng gói dữ liệu thành Frame, sử dụng địa chỉ MAC...</p>
+                            <p><strong>Lớp 3: Network:</strong> Định tuyến đường đi tốt nhất (Routing), sử dụng IP Address...</p>
+                            <p>*(Bạn hãy dán nội dung >500 chữ vào đây)*</p>
+                        </div>
+                    </details>
+                </article>
+
+                <article class="blog-card net-card">
+                    <span class="tag tag-net">Networking</span>
+                    <h3>2. Phân biệt TCP và UDP</h3>
+                    <p class="summary">Khi nào dùng TCP? Khi nào dùng UDP? Tại sao xem video streaming lại dùng UDP?</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content">
+                            <p>Nội dung bài viết về sự khác biệt giữa tin cậy (TCP) và tốc độ (UDP)...</p>
+                        </div>
+                    </details>
+                </article>
+
+                <article class="blog-card net-card">
+                    <span class="tag tag-net">Networking</span>
+                    <h3>3. Subnetting: Kỹ thuật chia mạng con</h3>
+                    <p class="summary">Hướng dẫn tính toán Subnet Mask, Network ID và Broadcast ID nhanh chóng.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                 <article class="blog-card net-card">
+                    <span class="tag tag-net">Networking</span>
+                    <h3>4. Quá trình DHCP DORA</h3>
+                    <p class="summary">Discover, Offer, Request, Acknowledge - Cách PC xin IP động.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                 <article class="blog-card net-card">
+                    <span class="tag tag-net">Networking</span>
+                    <h3>5. DNS hoạt động như thế nào?</h3>
+                    <p class="summary">Hành trình từ tên miền google.com đến địa chỉ IP máy chủ.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                 <article class="blog-card net-card">
+                    <span class="tag tag-net">Networking</span>
+                    <h3>6. VLAN và Trunking</h3>
+                    <p class="summary">Tại sao cần chia VLAN? Trunking 802.1Q hoạt động ra sao?</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+            </div>
         </section>
 
-        <section class="knowledge-block net-block">
-            <h2>Networking Basics</h2>
-            <article>
-                <h3>1. Subnetting & IP Addressing</h3>
-                <p>Cách chia mạng con, tính toán số host/subnet...</p>
-            </article>
-            <article>
-                <h3>2. Routing Protocols</h3>
-                <p>So sánh định tuyến tĩnh (Static) và động (OSPF, RIP)...</p>
-            </article>
+        <section class="category-section">
+            <h2 class="category-title" style="color: #f7df1e;"><i class="fab fa-js"></i> JavaScript Essentials</h2>
+            <div class="blog-grid">
+
+                <article class="blog-card js-card">
+                    <span class="tag tag-js">JavaScript</span>
+                    <h3>7. Event Loop trong Node.js</h3>
+                    <p class="summary">Giải thích cơ chế xử lý bất đồng bộ, Call Stack và Callback Queue.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content">
+                            <p>JavaScript là đơn luồng (Single-threaded), nhưng tại sao nó xử lý được hàng nghìn request?</p>
+                            <p>Nội dung chi tiết về Event Loop...</p>
+                        </div>
+                    </details>
+                </article>
+
+                <article class="blog-card js-card">
+                    <span class="tag tag-js">JavaScript</span>
+                    <h3>8. Var, Let và Const</h3>
+                    <p class="summary">Sự khác biệt về Scope, Hoisting và khả năng gán lại giá trị.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                <article class="blog-card js-card">
+                    <span class="tag tag-js">JavaScript</span>
+                    <h3>9. Promise và Async/Await</h3>
+                    <p class="summary">Thoát khỏi "Callback Hell" và viết code bất đồng bộ đẹp hơn.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                <article class="blog-card js-card">
+                    <span class="tag tag-js">JavaScript</span>
+                    <h3>10. Closures là gì?</h3>
+                    <p class="summary">Hiểu về phạm vi biến và ứng dụng của Closures trong bảo mật dữ liệu.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                <article class="blog-card js-card">
+                    <span class="tag tag-js">JavaScript</span>
+                    <h3>11. DOM Manipulation</h3>
+                    <p class="summary">Cách JavaScript tương tác và thay đổi HTML/CSS trên trình duyệt.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                <article class="blog-card js-card">
+                    <span class="tag tag-js">JavaScript</span>
+                    <h3>12. ES6+ Features nổi bật</h3>
+                    <p class="summary">Arrow Function, Destructuring, Template Literals, Spread Operator.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                <article class="blog-card js-card">
+                    <span class="tag tag-js">JavaScript</span>
+                    <h3>13. Từ khóa 'this'</h3>
+                    <p class="summary">Giải ngố về Context của 'this' trong các trường hợp khác nhau.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+            </div>
         </section>
+
+        <section class="category-section">
+            <h2 class="category-title" style="color: #e74c3c;"><i class="fab fa-java"></i> Java Core</h2>
+            <div class="blog-grid">
+
+                <article class="blog-card java-card">
+                    <span class="tag tag-java">Java</span>
+                    <h3>14. 4 Tính chất của OOP</h3>
+                    <p class="summary">Đóng gói, Kế thừa, Đa hình, Trừu tượng trong Java thể hiện như thế nào?</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content">
+                            <p>Object-Oriented Programming (OOP) là nền tảng của Java...</p>
+                            <p>Nội dung chi tiết...</p>
+                        </div>
+                    </details>
+                </article>
+
+                <article class="blog-card java-card">
+                    <span class="tag tag-java">Java</span>
+                    <h3>15. JVM, JRE và JDK</h3>
+                    <p class="summary">Phân biệt bộ ba khái niệm cốt lõi để chạy và phát triển ứng dụng Java.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                <article class="blog-card java-card">
+                    <span class="tag tag-java">Java</span>
+                    <h3>16. Java Collections Framework</h3>
+                    <p class="summary">Khi nào dùng ArrayList, LinkedList, HashSet hay HashMap?</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                <article class="blog-card java-card">
+                    <span class="tag tag-java">Java</span>
+                    <h3>17. Xử lý ngoại lệ (Exception Handling)</h3>
+                    <p class="summary">Try, Catch, Finally và cách tạo Custom Exception.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                <article class="blog-card java-card">
+                    <span class="tag tag-java">Java</span>
+                    <h3>18. Đa luồng (Multithreading)</h3>
+                    <p class="summary">Vòng đời của Thread và cách tạo luồng trong Java.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                <article class="blog-card java-card">
+                    <span class="tag tag-java">Java</span>
+                    <h3>19. String vs StringBuilder vs StringBuffer</h3>
+                    <p class="summary">Tại sao String là bất biến (Immutable) và khi nào cần dùng StringBuilder?</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+                 <article class="blog-card java-card">
+                    <span class="tag tag-java">Java</span>
+                    <h3>20. Interface và Abstract Class</h3>
+                    <p class="summary">Sự khác biệt cốt lõi và khi nào nên sử dụng loại nào.</p>
+                    <details>
+                        <summary class="read-more-btn">Đọc chi tiết <i class="fas fa-chevron-down"></i></summary>
+                        <div class="full-content"><p>Nội dung chi tiết...</p></div>
+                    </details>
+                </article>
+
+            </div>
+        </section>
+
     </main>
 </body>
 </html>
