@@ -910,3 +910,138 @@ body.dark-theme {
         transform: translateY(-5px); /* Trên mobile thì trượt lên */
     }
 }
+/* ================= BÀI VIẾT NỔI BẬT (INDEX) ================= */
+
+.featured-section {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid #e0e0e0; /* Đường kẻ ngăn cách nhẹ */
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* Style chung cho thẻ bài viết */
+.feat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.feat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+/* Icon bên trái */
+.feat-icon {
+    font-size: 2rem;
+    padding: 12px;
+    border-radius: 12px;
+    min-width: 60px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+/* Nội dung text */
+.feat-content { flex: 1; }
+
+.feat-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.feat-content h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.feat-content p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Mũi tên chỉ xuất hiện khi hover */
+.feat-arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: #ccc;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: 0.3s;
+}
+
+.feat-card:hover .feat-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* --- THEME MÀU SẮC RIÊNG BIỆT --- */
+
+/* Mạng máy tính (Xanh) */
+.net-theme .feat-icon { background: rgba(52, 152, 219, 0.1); color: #3498db; }
+.net-theme .feat-tag { color: #3498db; }
+.net-theme:hover { border-color: #3498db; }
+
+/* JavaScript (Vàng) */
+.js-theme .feat-icon { background: rgba(241, 196, 15, 0.1); color: #d4ac0d; }
+.js-theme .feat-tag { color: #d4ac0d; }
+.js-theme:hover { border-color: #f1c40f; }
+
+/* Java (Đỏ) */
+.java-theme .feat-icon { background: rgba(231, 76, 60, 0.1); color: #e74c3c; }
+.java-theme .feat-tag { color: #e74c3c; }
+.java-theme:hover { border-color: #e74c3c; }
+
+
+/* Nút Xem tất cả (Căn giữa) */
+.view-all-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-outline-dark {
+    display: inline-block;
+    padding: 12px 35px;
+    border: 2px solid #333;
+    color: #333;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-outline-dark:hover {
+    background: #333;
+    color: white;
+}
+.btn-outline-dark i { margin-left: 8px; }
+
+/* Responsive */
+@media (max-width: 600px) {
+    .feat-card { flex-direction: column; text-align: center; }
+    .feat-icon { margin: 0 auto 15px; }
+    .feat-arrow { display: none; }
+}
