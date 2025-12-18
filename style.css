@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4; /* Màu nền chung */
+}
+
+/* --- 2. NAVBAR (Thanh điều hướng) --- */
+.navbar {
+    background-color: #000000;   /* Nền đen tuyền */
+    color: white;                /* Chữ trắng */
+    display: flex;               /* Dàn ngang */
+    justify-content: space-between; /* Đẩy logo sang trái, menu sang phải */
+    align-items: center;         /* Căn giữa dọc */
+    padding: 15px 5%;            /* Khoảng cách lề: Trên dưới 15px, Trái phải 5% */
+    position: sticky;            /* Dính lên đầu trang khi cuộn */
+    top: 0;
+    z-index: 1000;               /* QUAN TRỌNG: Đảm bảo nó nằm ĐÈ LÊN ảnh và các phần khác */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Bóng đổ để tách biệt với nội dung dưới */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3498db; /* Màu xanh nổi bật cho Logo */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Khoảng cách giữa các link */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: #3498db; /* Di chuột vào chuyển màu xanh */
+}
+
+/* --- 3. HERO SECTION (Phần bên dưới Navbar) --- */
+/* (Giữ nguyên phần code Hero section bạn đã làm ở bước trước) */
+.hero-section {
+    background-color: #111111;
+    color: #ffffff;
+    padding: 80px 0;
+}
+
+/* Tìm và sửa đoạn này trong file style.css */
+
+.hero-container {
+    /* 1. Kích thước và căn giữa */
+    width: 90%;           /* Chiếm 90% chiều rộng màn hình (để chừa 10% lề 2 bên) */
+    max-width: 1200px;    /* Không cho rộng quá 1200px trên màn hình to */
+    margin: 0 auto;       /* Căn giữa container vào giữa màn hình */
+    
+    /* 2. Bố cục Flexbox (Giữ nguyên) */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Đẩy nội dung dàn đều */
+    gap: 50px;            /* Tăng khoảng cách giữa chữ và ảnh cho thoáng */
+}
+
+/* --- CỘT TRÁI: NỘI DUNG CHỮ --- */
+.hero-content {
+    flex: 1; /* Chiếm phần không gian còn lại */
+    max-width: 600px;
+}
+
+.hero-name {
+    font-size: 3.5rem; /* Tên to và in đậm */
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* Dòng chữ màu xanh dương làm điểm nhấn */
+.highlight-text {
+    color: #3498db; 
+    font-weight: bold;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    opacity: 0.9;      /* Màu chữ hơi mờ một chút */
+}
+
+/* --- NÚT BẤM (BUTTON) --- */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    color: #3498db;          /* Chữ màu xanh */
+    background-color: transparent; /* Nền trong suốt */
+    border: 2px solid #3498db;     /* Viền màu xanh */
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi di chuột vào nút */
+.btn-primary:hover {
+    background-color: #3498db; /* Nền chuyển sang xanh */
+    color: #ffffff;            /* Chữ chuyển sang trắng */
+}
+
+.arrow {
+    margin-left: 10px;
+    font-size: 1.2rem;
+    transition: margin-left 0.3s ease;
+}
+
+/* Mũi tên dịch chuyển nhẹ khi hover */
+.btn-primary:hover .arrow {
+    margin-left: 15px;
+}
+
+/* --- CỘT PHẢI: ẢNH ĐẠI DIỆN --- */
+.hero-image-wrapper {
+    flex: 0 0 400px; /* Cố định chiều rộng khung ảnh */
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px; /* Bo góc nhẹ cho ảnh */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Đổ bóng tạo chiều sâu */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    aspect-ratio: 1 / 1; /* Giữ tỉ lệ khung ảnh là hình vuông */
+}
+
+/* --- RESPONSIVE: Giao diện trên điện thoại --- */
+@media (max-width: 900px) {
+    .hero-container {
+        flex-direction: column-reverse; /* Đảo ngược thứ tự: Ảnh lên trên, chữ xuống dưới */
+        text-align: center;
+    }
+
+    .hero-content {
+        align-items: center; /* Căn giữa nội dung cột chữ */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero-image-wrapper {
+        flex: 0 0 auto;
+        width: 80%; /* Ảnh nhỏ lại trên mobile */
+        max-width: 350px;
+    }
+
+    .hero-name {
+        font-size: 2.5rem; /* Giảm kích thước font trên mobile */
+    }
+}
