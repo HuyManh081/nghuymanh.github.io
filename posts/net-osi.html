@@ -34,12 +34,102 @@
                 <span><i class="fas fa-calendar"></i> 20/05/2024</span>
             </div>
 
-            <div class="post-body">
-                
-                <p><strong>Giới thiệu:</strong> Trong thế giới mạng máy tính, mô hình OSI là kim chỉ nam...</p>
-                
-                <h3>1. Tại sao cần mô hình OSI?</h3>
-                <p>Trước khi có OSI, các hãng máy tính như IBM, DEC đều có chuẩn riêng...</p>
+<div class="post-body">
+    
+    <p><strong>Giới thiệu:</strong> Trong thế giới mạng máy tính, mô hình OSI (Open Systems Interconnection) là "kim chỉ nam" mà bất kỳ kỹ sư mạng nào cũng phải nằm lòng. Nó không chỉ giúp chúng ta hiểu cách dữ liệu di chuyển từ máy tính này sang máy tính khác mà còn là nền tảng để xử lý sự cố (troubleshooting) một cách logic và hiệu quả.</p>
+    
+    <h3>1. Tại sao cần mô hình OSI?</h3>
+    <p>
+        Trước những năm 1980, các hãng sản xuất máy tính như IBM, DEC hay HP đều có các tiêu chuẩn mạng riêng biệt. Điều này tạo ra sự hỗn loạn: Một máy tính của IBM không thể giao tiếp với máy tính của HP. 
+        Để giải quyết vấn đề này, Tổ chức Tiêu chuẩn hóa Quốc tế (ISO) đã giới thiệu mô hình OSI vào năm 1984. Đây là một khung tham chiếu logic chia quá trình truyền thông mạng thành <strong>7 lớp (Layers)</strong> riêng biệt.
+    </p>
+    <p>
+        Lợi ích lớn nhất của OSI là giúp chia nhỏ vấn đề. Khi mạng bị lỗi, thay vì kiểm tra toàn bộ hệ thống, ta có thể khoanh vùng: "Lỗi này do đứt cáp (Layer 1) hay do sai địa chỉ IP (Layer 3)?".
+    </p>
+
+    <h3>2. Chi tiết 7 Lớp (Từ dưới lên trên)</h3>
+    <p>Để dễ nhớ, chúng ta thường học theo quy tắc "All People Seem To Need Data Processing" (7 -> 1) hoặc đi từ nền tảng vật lý lên ứng dụng (1 -> 7). Dưới đây là phân tích chi tiết:</p>
+
+    <h4>Lớp 1: Physical Layer (Lớp Vật lý)</h4>
+    <p>
+        Đây là tầng thấp nhất, nơi tiếp xúc trực tiếp với phần cứng. Nhiệm vụ của nó là truyền tải dòng bit dữ liệu (chuỗi số 0 và 1) qua môi trường vật lý.
+    </p>
+    <ul>
+        <li><strong>Đơn vị dữ liệu (PDU):</strong> Bit.</li>
+        <li><strong>Thiết bị/Chuẩn:</strong> Cáp đồng (RJ45), Cáp quang, Hub, Repeater, sóng Wi-Fi.</li>
+        <li><strong>Chức năng:</strong> Quy định về điện áp (bao nhiêu volt là bit 1, bao nhiêu là bit 0), tốc độ truyền dẫn và chuẩn kết nối vật lý.</li>
+    </ul>
+
+    <h4>Lớp 2: Data Link Layer (Lớp Liên kết dữ liệu)</h4>
+    <p>
+        Lớp này đảm bảo việc truyền tải dữ liệu tin cậy giữa hai thiết bị kết nối trực tiếp (cùng một mạng LAN). Nó đóng gói các bit từ Lớp 1 thành các khung dữ liệu (Frames).
+    </p>
+    <ul>
+        <li><strong>Đơn vị dữ liệu:</strong> Frame.</li>
+        <li><strong>Địa chỉ sử dụng:</strong> MAC Address (Địa chỉ vật lý).</li>
+        <li><strong>Thiết bị:</strong> Switch, Bridge, Card mạng (NIC).</li>
+        <li><strong>Chức năng quan trọng:</strong> Kiểm soát lỗi (Error detection) và điều khiển luồng. Đây là nơi Switch hoạt động để chuyển dữ liệu đến đúng cổng dựa trên bảng địa chỉ MAC.</li>
+    </ul>
+
+    <h4>Lớp 3: Network Layer (Lớp Mạng)</h4>
+    <p>
+        Đây là lớp quan trọng nhất đối với các kỹ sư mạng (Network Engineer). Nó quyết định đường đi của dữ liệu từ nguồn tới đích thông qua các mạng khác nhau (Internetworking).
+    </p>
+    <ul>
+        <li><strong>Đơn vị dữ liệu:</strong> Packet (Gói tin).</li>
+        <li><strong>Địa chỉ sử dụng:</strong> IP Address (Logical Address - IPv4/IPv6).</li>
+        <li><strong>Thiết bị:</strong> Router, Layer 3 Switch.</li>
+        <li><strong>Chức năng:</strong> Định tuyến (Routing) - Tìm đường đi tối ưu nhất cho gói tin đi qua ma trận Internet để đến đích.</li>
+    </ul>
+
+    <h4>Lớp 4: Transport Layer (Lớp Giao vận)</h4>
+    <p>
+        Lớp này chịu trách nhiệm vận chuyển dữ liệu giữa các ứng dụng/tiến trình (Process-to-process). Nó quyết định xem dữ liệu nên được gửi đi theo kiểu "tin cậy tuyệt đối" hay "tốc độ cao".
+    </p>
+    <ul>
+        <li><strong>Đơn vị dữ liệu:</strong> Segment (TCP) hoặc Datagram (UDP).</li>
+        <li><strong>Giao thức chính:</strong> TCP (Transmission Control Protocol) và UDP (User Datagram Protocol).</li>
+        <li><strong>Chức năng:</strong> Phân mảnh dữ liệu (Segmentation) ở nguồn và lắp ghép lại ở đích. Sử dụng <strong>Port Number</strong> để phân biệt các dịch vụ (Ví dụ: Web dùng Port 80, SSH dùng Port 22).</li>
+    </ul>
+
+    <h4>Lớp 5: Session Layer (Lớp Phiên)</h4>
+    <p>
+        Lớp này thiết lập, duy trì và đồng bộ hóa các phiên làm việc giữa hai ứng dụng. Ví dụ, khi bạn đăng nhập vào Facebook, lớp Session giữ cho kết nối của bạn luôn "sống" và phân biệt phiên làm việc của bạn với người khác cho đến khi bạn đăng xuất hoặc hết thời gian (timeout).
+    </p>
+
+    <h4>Lớp 6: Presentation Layer (Lớp Trình bày)</h4>
+    <p>
+        Được ví như "người phiên dịch" của mạng. Lớp này đảm bảo dữ liệu gửi từ lớp ứng dụng của hệ thống này có thể đọc được bởi lớp ứng dụng của hệ thống khác.
+    </p>
+    <ul>
+        <li><strong>Mã hóa/Giải mã:</strong> SSL/TLS (HTTPS) hoạt động tại đây để bảo mật dữ liệu.</li>
+        <li><strong>Nén dữ liệu:</strong> Giúp truyền tải nhanh hơn (như file ZIP, RAR).</li>
+        <li><strong>Định dạng:</strong> Chuyển đổi mã (VD: ASCII sang EBCDIC), định dạng ảnh (JPEG, PNG).</li>
+    </ul>
+
+    <h4>Lớp 7: Application Layer (Lớp Ứng dụng)</h4>
+    <p>
+        Đây là lớp gần gũi nhất với người dùng. Lưu ý: Nó không phải là trình duyệt Chrome hay Firefox, mà là các giao thức chạy ngầm bên dưới để các ứng dụng đó hoạt động.
+    </p>
+    <ul>
+        <li><strong>Giao thức phổ biến:</strong> HTTP/HTTPS (Web), SMTP/POP3 (Email), FTP (Truyền file), DNS (Phân giải tên miền).</li>
+        <li><strong>Nhiệm vụ:</strong> Cung cấp giao diện mạng cho các phần mềm người dùng cuối.</li>
+    </ul>
+
+    <h3>3. Quá trình đóng gói dữ liệu (Encapsulation)</h3>
+    <p>
+        Để dữ liệu truyền đi được, nó phải trải qua quá trình đóng gói:
+    </p>
+    <ul>
+        <li><strong>Tại máy gửi (Encapsulation):</strong> Dữ liệu đi từ Lớp 7 xuống Lớp 1. Mỗi khi đi qua một lớp, nó được "bọc" thêm một cái Header (thông tin điều khiển). Ví dụ: Lớp 4 thêm Port, Lớp 3 thêm IP, Lớp 2 thêm MAC.</li>
+        <li><strong>Tại máy nhận (Decapsulation):</strong> Quá trình diễn ra ngược lại từ Lớp 1 lên Lớp 7. Các lớp sẽ bóc tách Header tương ứng để lấy dữ liệu gốc.</li>
+    </ul>
+
+    <h3>Kết luận</h3>
+    <p>
+        Hiểu rõ mô hình OSI 7 lớp là bước đầu tiên để trở thành một chuyên gia mạng. Nó giúp bạn hình dung được bức tranh toàn cảnh về cách Internet vận hành. Trong bài viết tiếp theo, chúng ta sẽ đi sâu vào sự khác biệt giữa TCP và UDP ở Lớp 4.
+    </p>
+</div>
 
                 </div>
         </article>
