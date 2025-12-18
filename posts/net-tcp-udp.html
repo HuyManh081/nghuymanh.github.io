@@ -1,0 +1,78 @@
+<div class="post-body">
+    <p><strong>Giới thiệu:</strong> Trong Lớp Giao vận (Layer 4 - Transport Layer), hai "gã khổng lồ" chi phối hầu hết các kết nối Internet ngày nay là TCP và UDP. Việc hiểu rõ khi nào dùng giao thức nào sẽ giúp bạn thiết kế hệ thống mạng tối ưu, đặc biệt là với các ứng dụng yêu cầu thời gian thực.</p>
+
+    <h3>1. TCP (Transmission Control Protocol) - Người vận chuyển tin cậy</h3>
+    <p>TCP là giao thức hướng kết nối (Connection-oriented). Hãy tưởng tượng TCP giống như một cuộc gọi điện thoại: Bạn phải nhấc máy, chờ người kia "Alo", xác nhận là đúng người rồi mới bắt đầu nói chuyện.</p>
+    
+    <h4>Cơ chế "Bắt tay 3 bước" (3-Way Handshake)</h4>
+    <p>Trước khi truyền bất kỳ dữ liệu nào, TCP bắt buộc phải thiết lập kết nối:</p>
+    <ul>
+        <li><strong>Bước 1 (SYN):</strong> Máy A gửi yêu cầu kết nối ("Tôi muốn nói chuyện").</li>
+        <li><strong>Bước 2 (SYN-ACK):</strong> Máy B xác nhận và đồng ý ("Ok, tôi nghe đây").</li>
+        <li><strong>Bước 3 (ACK):</strong> Máy A xác nhận lại lần cuối ("Bắt đầu nhé").</li>
+    </ul>
+    
+    
+    <h4>Đặc điểm cốt lõi của TCP:</h4>
+    <ul>
+        <li><strong>Tin cậy (Reliable):</strong> Đây là đặc điểm quan trọng nhất. Mọi gói tin gửi đi đều phải được xác nhận (Acknowledge). Nếu gói tin bị mất trên đường truyền, TCP sẽ tự động gửi lại (Retransmission).</li>
+        <li><strong>Đúng thứ tự (Ordered):</strong> Các gói tin được đánh số thứ tự (Sequence Number). Dù chúng đến đích lộn xộn, TCP sẽ sắp xếp lại đúng y hệt bản gốc trước khi chuyển lên lớp ứng dụng.</li>
+        <li><strong>Kiểm soát luồng (Flow Control):</strong> Nếu máy nhận đang bận hoặc quá tải, TCP sẽ bảo máy gửi chậm lại để tránh tràn bộ đệm.</li>
+    </ul>
+    <p><strong>Ứng dụng:</strong> Duyệt web (HTTP/HTTPS), Email (SMTP), Truyền file (FTP) - những nơi mà việc mất dù chỉ một byte dữ liệu cũng có thể làm hỏng cả tệp tin.</p>
+
+    <h3>2. UDP (User Datagram Protocol) - Kẻ liều lĩnh tốc độ cao</h3>
+    <p>Ngược lại, UDP là giao thức không kết nối (Connectionless). UDP giống như việc bạn gửi thư qua đường bưu điện: Bạn bỏ thư vào hòm và hy vọng nó đến nơi. Bạn không biết chắc chắn nó có đến hay không, và thư gửi trước có thể đến sau.</p>
+
+    <h4>Đặc điểm cốt lõi của UDP:</h4>
+    <ul>
+        <li><strong>Không bắt tay:</strong> UDP cứ thế mà "bắn" dữ liệu đi, không cần thiết lập kết nối trước. Điều này giúp loại bỏ độ trễ (latency) ban đầu.</li>
+        <li><strong>Không sửa lỗi:</strong> Nếu gói tin bị mất hoặc lỗi, UDP mặc kệ, nó không gửi lại.</li>
+        <li><strong>Header siêu nhẹ:</strong> UDP Header chỉ có 8 bytes (so với 20-60 bytes của TCP), giúp tiết kiệm băng thông tối đa.</li>
+    </ul>
+
+    <h3>3. Tại sao xem video lại dùng UDP?</h3>
+    <p>Bạn có bao giờ thắc mắc tại sao khi xem Livestream hoặc gọi Video Call, đôi khi hình ảnh bị vỡ (pixelated) hoặc giật một chút rồi lại bình thường không? Đó là do UDP.</p>
+    <p>
+        Nếu dùng TCP cho video trực tiếp: Khi một gói tin bị mất, video sẽ phải <strong>dừng lại (buffering)</strong> để chờ hệ thống gửi lại gói tin đó. Điều này tạo ra trải nghiệm rất tệ. 
+        Với UDP, thà mất một vài khung hình (chấp nhận hình hơi xấu trong 1 giây) nhưng video vẫn chạy mượt mà theo thời gian thực (Real-time).
+    </p>
+
+    <h3>4. Bảng so sánh tóm tắt</h3>
+    <table border="1" cellpadding="10" cellspacing="0" style="width:100%; border-collapse: collapse; margin-top: 15px;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th>Tiêu chí</th>
+                <th>TCP</th>
+                <th>UDP</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Loại kết nối</strong></td>
+                <td>Connection-oriented</td>
+                <td>Connectionless</td>
+            </tr>
+            <tr>
+                <td><strong>Độ tin cậy</strong></td>
+                <td>Cao (Có gửi lại, đảm bảo thứ tự)</td>
+                <td>Thấp (Mất là mất luôn)</td>
+            </tr>
+            <tr>
+                <td><strong>Tốc độ</strong></td>
+                <td>Chậm hơn (Do thủ tục rườm rà)</td>
+                <td>Rất nhanh</td>
+            </tr>
+            <tr>
+                <td><strong>Header Size</strong></td>
+                <td>20 Bytes</td>
+                <td>8 Bytes</td>
+            </tr>
+            <tr>
+                <td><strong>Sử dụng cho</strong></td>
+                <td>Web, Email, Banking, File Transfer</td>
+                <td>Game Online, Streaming, VoIP, DNS</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
