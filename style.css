@@ -1,3 +1,4 @@
+/* ================= 1. CẤU TRÚC CƠ BẢN (RESET) ================= */
 * {
     margin: 0;
     padding: 0;
@@ -7,32 +8,41 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4; /* Màu nền chung */
+    color: #333;
+    line-height: 1.6;
 }
 
-/* --- 2. NAVBAR (Thanh điều hướng) --- */
+/* Class dùng chung để căn giữa nội dung cho cả Header và Main */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ================= 2. NAVBAR (THANH ĐIỀU HƯỚNG) ================= */
 .navbar {
     background-color: #000000;   /* Nền đen tuyền */
     color: white;                /* Chữ trắng */
     display: flex;               /* Dàn ngang */
-    justify-content: space-between; /* Đẩy logo sang trái, menu sang phải */
+    justify-content: space-between; /* Logo trái, Menu phải */
     align-items: center;         /* Căn giữa dọc */
-    padding: 15px 5%;            /* Khoảng cách lề: Trên dưới 15px, Trái phải 5% */
-    position: sticky;            /* Dính lên đầu trang khi cuộn */
+    padding: 15px 5%;            /* Khoảng cách lề */
+    position: sticky;            /* Dính lên đầu trang */
     top: 0;
-    z-index: 1000;               /* QUAN TRỌNG: Đảm bảo nó nằm ĐÈ LÊN ảnh và các phần khác */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Bóng đổ để tách biệt với nội dung dưới */
+    z-index: 1000;               /* Đảm bảo luôn nổi lên trên cùng */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #3498db; /* Màu xanh nổi bật cho Logo */
+    color: #3498db; /* Màu xanh logo */
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 30px; /* Khoảng cách giữa các link */
+    gap: 30px;
 }
 
 .nav-links a {
@@ -44,40 +54,32 @@ body {
 
 .nav-links a:hover, 
 .nav-links a.active {
-    color: #3498db; /* Di chuột vào chuyển màu xanh */
+    color: #3498db; /* Hover chuyển màu xanh */
 }
 
-/* --- 3. HERO SECTION (Phần bên dưới Navbar) --- */
-/* (Giữ nguyên phần code Hero section bạn đã làm ở bước trước) */
+/* ================= 3. HERO SECTION (PHẦN GIỚI THIỆU) ================= */
 .hero-section {
-    background-color: #111111;
+    background-color: #111111; /* Nền tối */
     color: #ffffff;
     padding: 80px 0;
+    margin-bottom: 40px; /* Tạo khoảng cách với phần chứng chỉ bên dưới */
 }
-
-/* Tìm và sửa đoạn này trong file style.css */
 
 .hero-container {
-    /* 1. Kích thước và căn giữa */
-    width: 90%;           /* Chiếm 90% chiều rộng màn hình (để chừa 10% lề 2 bên) */
-    max-width: 1200px;    /* Không cho rộng quá 1200px trên màn hình to */
-    margin: 0 auto;       /* Căn giữa container vào giữa màn hình */
-    
-    /* 2. Bố cục Flexbox (Giữ nguyên) */
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Đẩy nội dung dàn đều */
-    gap: 50px;            /* Tăng khoảng cách giữa chữ và ảnh cho thoáng */
+    justify-content: space-between;
+    gap: 50px;
 }
 
-/* --- CỘT TRÁI: NỘI DUNG CHỮ --- */
+/* Cột trái: Nội dung chữ */
 .hero-content {
-    flex: 1; /* Chiếm phần không gian còn lại */
+    flex: 1;
     max-width: 600px;
 }
 
 .hero-name {
-    font-size: 3.5rem; /* Tên to và in đậm */
+    font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 20px;
     line-height: 1.1;
@@ -89,7 +91,6 @@ body {
     line-height: 1.4;
 }
 
-/* Dòng chữ màu xanh dương làm điểm nhấn */
 .highlight-text {
     color: #3498db; 
     font-weight: bold;
@@ -98,27 +99,26 @@ body {
 .hero-description {
     font-size: 1.1rem;
     margin-bottom: 40px;
-    opacity: 0.9;      /* Màu chữ hơi mờ một chút */
+    opacity: 0.9;
 }
 
-/* --- NÚT BẤM (BUTTON) --- */
+/* Nút bấm Hero */
 .btn-primary {
     display: inline-flex;
     align-items: center;
     padding: 12px 28px;
-    color: #3498db;          /* Chữ màu xanh */
-    background-color: transparent; /* Nền trong suốt */
-    border: 2px solid #3498db;     /* Viền màu xanh */
+    color: #3498db;
+    background-color: transparent;
+    border: 2px solid #3498db;
     text-decoration: none;
     font-weight: 600;
     border-radius: 4px;
     transition: all 0.3s ease;
 }
 
-/* Hiệu ứng khi di chuột vào nút */
 .btn-primary:hover {
-    background-color: #3498db; /* Nền chuyển sang xanh */
-    color: #ffffff;            /* Chữ chuyển sang trắng */
+    background-color: #3498db;
+    color: #ffffff;
 }
 
 .arrow {
@@ -127,45 +127,121 @@ body {
     transition: margin-left 0.3s ease;
 }
 
-/* Mũi tên dịch chuyển nhẹ khi hover */
 .btn-primary:hover .arrow {
     margin-left: 15px;
 }
 
-/* --- CỘT PHẢI: ẢNH ĐẠI DIỆN --- */
+/* Cột phải: Ảnh đại diện */
 .hero-image-wrapper {
-    flex: 0 0 400px; /* Cố định chiều rộng khung ảnh */
+    flex: 0 0 400px;
 }
 
 .hero-image {
     width: 100%;
     height: auto;
-    border-radius: 12px; /* Bo góc nhẹ cho ảnh */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Đổ bóng tạo chiều sâu */
-    object-fit: cover; /* Đảm bảo ảnh không bị méo */
-    aspect-ratio: 1 / 1; /* Giữ tỉ lệ khung ảnh là hình vuông */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
 }
 
-/* --- RESPONSIVE: Giao diện trên điện thoại --- */
+/* ================= 4. PHẦN CHỨNG CHỈ (PDF CARDS) ================= */
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.cert-grid {
+    display: grid;
+    /* Tự động chia cột: PC 3 cột, Tablet 2 cột, Mobile 1 cột */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding-bottom: 60px; /* Khoảng cách dưới cùng trang web */
+}
+
+.cert-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Bóng mờ nhẹ */
+    text-align: center;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Đẩy nút xuống đáy nếu nội dung ngắn dài khác nhau */
+}
+
+.cert-card:hover {
+    transform: translateY(-5px); /* Bay lên khi di chuột vào */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-color: #3498db;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.cert-card h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.cert-card p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* Nút xem PDF */
+.btn-cert {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    color: #333;
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-cert:hover {
+    background-color: #e74c3c; /* Màu đỏ đặc trưng của PDF */
+    color: white;
+    border-color: #e74c3c;
+}
+
+/* ================= 5. RESPONSIVE (MOBILE) ================= */
 @media (max-width: 900px) {
+    /* Hero Section trên mobile */
     .hero-container {
-        flex-direction: column-reverse; /* Đảo ngược thứ tự: Ảnh lên trên, chữ xuống dưới */
+        flex-direction: column-reverse; /* Đảo ngược: Ảnh lên trên, chữ xuống dưới */
         text-align: center;
     }
 
     .hero-content {
-        align-items: center; /* Căn giữa nội dung cột chữ */
+        align-items: center;
         display: flex;
         flex-direction: column;
     }
 
     .hero-image-wrapper {
         flex: 0 0 auto;
-        width: 80%; /* Ảnh nhỏ lại trên mobile */
-        max-width: 350px;
+        width: 70%;
+        max-width: 300px;
     }
 
     .hero-name {
-        font-size: 2.5rem; /* Giảm kích thước font trên mobile */
+        font-size: 2.5rem;
+    }
+    
+    /* Navbar trên mobile nhỏ quá thì có thể chỉnh font size (nếu cần) */
+    .logo {
+        font-size: 1.2rem;
     }
 }
