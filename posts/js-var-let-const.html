@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Var, Let và Const - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #d4ac0d;">Phân biệt Var, Let và Const trong ES6</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> JavaScript Core</span> |
+                <span><i class="fas fa-calendar"></i> 27/05/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> Trước năm 2015 (ES5), chúng ta chỉ có <code>var</code> để khai báo biến. Điều này gây ra rất nhiều lỗi khó hiểu. Sự ra đời của <code>let</code> và <code>const</code> trong ES6 là một cuộc cách mạng. Vậy chúng khác nhau thế nào?</p>
+
+                <h3>1. Scope (Phạm vi hoạt động)</h3>
+                <ul>
+                    <li><strong>Var:</strong> Có phạm vi trong <strong>Function Scope</strong>. Nó không tôn trọng các khối lệnh <code>if</code> hay <code>for</code>.</li>
+                    <li><strong>Let / Const:</strong> Có phạm vi trong <strong>Block Scope</strong> (trong cặp ngoặc nhọn <code>{}</code>).</li>
+                </ul>
+                <p><em>Ví dụ lỗi điển hình của Var:</em></p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+if (true) {
+    var x = 10;
+}
+console.log(x); // In ra 10 (Dù x được khai báo trong if) -> Lỗi bảo mật dữ liệu!
+                </pre>
+                <p>Nếu thay bằng <code>let x = 10</code>, dòng console.log sẽ báo lỗi <em>ReferenceError</em> ngay, đây là điều chúng ta mong muốn để code an toàn hơn.</p>
+
+                <h3>2. Hoisting (Cơ chế đưa lên đầu)</h3>
+                <ul>
+                    <li><strong>Var:</strong> Được đưa lên đầu phạm vi và khởi tạo giá trị là <code>undefined</code>. Bạn có thể log biến trước khi khai báo (kết quả ra undefined).</li>
+                    <li><strong>Let / Const:</strong> Cũng được đưa lên đầu nhưng <strong>KHÔNG</strong> được khởi tạo. Nếu gọi trước khi khai báo sẽ gặp lỗi <em>Temporal Dead Zone</em>.</li>
+                </ul>
+
+                <h3>3. Re-assignment (Gán lại giá trị)</h3>
+                <ul>
+                    <li><strong>Var / Let:</strong> Có thể gán lại giá trị tùy ý.</li>
+                    <li><strong>Const:</strong> Bắt buộc phải gán giá trị ngay khi khai báo và <strong>KHÔNG</strong> thể gán lại sau đó.</li>
+                </ul>
+                <p><strong>Lưu ý quan trọng về Const:</strong> Const đối với Object/Array thì bạn không thể gán bằng dấu <code>=</code>, nhưng bạn vẫn có thể thay đổi thuộc tính bên trong nó.</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+const user = { name: "Mạnh" };
+user.name = "Huy"; // Hợp lệ!
+user = { name: "Long" }; // Lỗi!
+                </pre>
+
+                <h3>4. Bảng tổng kết</h3>
+                <table border="1" cellpadding="10" cellspacing="0" style="width:100%; border-collapse: collapse; margin-top: 15px;">
+                    <thead style="background-color: #f2f2f2;">
+                        <tr>
+                            <th>Đặc điểm</th>
+                            <th>Var</th>
+                            <th>Let</th>
+                            <th>Const</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Scope</strong></td>
+                            <td>Function</td>
+                            <td>Block {}</td>
+                            <td>Block {}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gán lại?</strong></td>
+                            <td>Có</td>
+                            <td>Có</td>
+                            <td>Không</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hoisting</strong></td>
+                            <td>Có (undefined)</td>
+                            <td>Lỗi (TDZ)</td>
+                            <td>Lỗi (TDZ)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Lời khuyên:</strong> Mặc định dùng <code>const</code>. Chỉ dùng <code>let</code> khi biết chắc chắn biến đó sẽ thay đổi. Hạn chế tối đa dùng <code>var</code>.</p>
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
