@@ -452,3 +452,124 @@ summary.read-more-btn:hover {
     padding: 15px;
     border-radius: 5px;
 }
+/* --- 1. MÀU SẮC CHỦ ĐẠO --- */
+:root {
+    --color-net: #3498db;  /* Xanh dương (Networking) */
+    --color-js: #f1c40f;   /* Vàng (JavaScript) */
+    --color-java: #e74c3c; /* Đỏ (Java) */
+}
+
+/* --- 2. TRANG TRÍ CARD TRONG BLOG.HTML --- */
+
+/* Cơ bản cho Card */
+.blog-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hiệu ứng Hover chung */
+.blog-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* --- PHÂN LOẠI MÀU SẮC CHO CARD --- */
+
+/* NETWORKING (Xanh) */
+.net-card {
+    border-top: 5px solid var(--color-net);
+}
+.net-card h3 { color: var(--color-net); }
+.net-btn {
+    background-color: var(--color-net);
+    color: white;
+}
+.net-card:hover { border-color: var(--color-net); }
+
+/* JAVASCRIPT (Vàng) */
+.js-card {
+    border-top: 5px solid var(--color-js);
+}
+.js-card h3 { color: #d4ac0d; /* Vàng đậm hơn chút để dễ đọc */ }
+.js-btn {
+    background-color: var(--color-js);
+    color: #333; /* Chữ màu đen trên nền vàng */
+}
+.js-card:hover { border-color: var(--color-js); }
+
+/* JAVA (Đỏ) */
+.java-card {
+    border-top: 5px solid var(--color-java);
+}
+.java-card h3 { color: var(--color-java); }
+.java-btn {
+    background-color: var(--color-java);
+    color: white;
+}
+.java-card:hover { border-color: var(--color-java); }
+
+
+/* --- 3. NÚT "ĐỌC TIẾP" (Thay thế cho details/summary cũ) --- */
+.read-more-btn {
+    margin-top: auto; /* Đẩy nút xuống đáy */
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    transition: opacity 0.3s;
+    display: inline-block;
+    width: fit-content; /* Nút gọn theo chữ */
+}
+
+.read-more-btn:hover {
+    opacity: 0.8;
+}
+
+.read-more-btn i {
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+/* --- 4. STYLE CHO TRANG BÀI VIẾT CHI TIẾT (Trang con) --- */
+.post-content {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 50px;
+}
+
+.post-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.post-meta {
+    color: #777;
+    margin-bottom: 30px;
+    font-style: italic;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.post-body {
+    line-height: 1.8;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+.post-body h2 { margin-top: 30px; margin-bottom: 15px; color: #222; }
+.post-body h3 { margin-top: 25px; margin-bottom: 10px; color: #444; }
+.post-body p { margin-bottom: 20px; }
+.post-body ul { margin-bottom: 20px; padding-left: 20px; }
+.post-body img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
