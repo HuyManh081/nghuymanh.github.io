@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Loop trong Node.js - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #d4ac0d;">Event Loop: Trái tim của Node.js</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> JavaScript Core</span> |
+                <span><i class="fas fa-calendar"></i> 26/05/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> JavaScript là ngôn ngữ đơn luồng (Single-threaded), nghĩa là nó chỉ có thể làm <strong>một việc tại một thời điểm</strong>. Vậy tại sao Node.js lại có thể xử lý hàng nghìn request cùng lúc mà không bị treo? Bí mật nằm ở cơ chế <strong>Event Loop</strong>.</p>
+
+                <h3>1. Các thành phần chính</h3>
+                <p>Để hiểu Event Loop, ta cần biết 3 thành phần cấu tạo nên môi trường chạy JS:</p>
+                
+                <ul>
+                    <li><strong>Call Stack (Ngăn xếp):</strong> Nơi chứa code đồng bộ đang chạy. Nguyên tắc LIFO (Vào sau ra trước).</li>
+                    <li><strong>Node APIs (hoặc Web APIs):</strong> Các hàm bất đồng bộ (như <code>setTimeout</code>, gọi Database, đọc File) sẽ được đẩy sang đây để C++ xử lý ngầm.</li>
+                    <li><strong>Callback Queue (Hàng đợi):</strong> Khi các tác vụ ở API xử lý xong, kết quả (callback) sẽ được xếp hàng ở đây chờ được thực thi.</li>
+                </ul>
+
+                <h3>2. Event Loop hoạt động như thế nào?</h3>
+                <p>Event Loop thực chất là một vòng lặp vô tận, nó đóng vai trò như một "bác bảo vệ" với nhiệm vụ cực kỳ đơn giản:</p>
+                <blockquote>
+                    "Nó liên tục kiểm tra xem <strong>Call Stack</strong> có trống không? Nếu Stack trống và trong <strong>Queue</strong> có việc, nó sẽ bốc việc từ Queue bỏ vào Stack để chạy."
+                </blockquote>
+
+                <h3>3. Ví dụ thực tế</h3>
+                <p>Hãy xem xét đoạn code sau:</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto;">
+console.log("1. Bắt đầu");
+
+setTimeout(() => {
+  console.log("2. Hẹn giờ 0 giây");
+}, 0);
+
+console.log("3. Kết thúc");
+                </pre>
+                <p><strong>Kết quả in ra sẽ là:</strong> 1 -> 3 -> 2. Tại sao lại là 2 cuối cùng dù set 0 giây?</p>
+                
+                <h4>Giải thích quy trình:</h4>
+                <ol>
+                    <li><code>console.log("1...")</code> vào Stack -> Chạy xong -> Ra khỏi Stack.</li>
+                    <li><code>setTimeout</code> vào Stack. Vì là bất đồng bộ, nó bị đá sang <strong>Node APIs</strong>. Stack trống.</li>
+                    <li><code>console.log("3...")</code> vào Stack -> Chạy xong -> Ra khỏi Stack.</li>
+                    <li>Trong lúc đó, Timer 0 giây ở API chạy xong, nó đẩy callback <code>console.log("2...")</code> xuống <strong>Queue</strong>.</li>
+                    <li>Event Loop thấy Stack đã trống (sau khi in số 3), nó mới bốc số 2 từ Queue lên Stack để chạy.</li>
+                </ol>
+
+                <h3>4. Kết luận</h3>
+                <p>Hiểu về Event Loop giúp bạn tránh được việc viết code chặn (Blocking code) trong Node.js. Hãy luôn nhớ: Đừng bao giờ để Call Stack bị tắc nghẽn bởi các vòng lặp tính toán quá nặng, nếu không toàn bộ server sẽ bị "đơ".</p>
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
