@@ -330,3 +330,125 @@ body {
 .cert-card p {
     color: #666;
     font-size: 0.
+/* --- BLOG PAGE STYLES --- */
+
+.blog-header {
+    text-align: center;
+    margin: 40px 0 60px;
+}
+
+.blog-header h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.blog-header p {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+/* Category Section */
+.category-section {
+    margin-bottom: 80px; /* Khoảng cách giữa các chuyên mục */
+}
+
+.category-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    display: inline-block;
+}
+
+/* Grid Layout cho Blog */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Tự động chia cột */
+    gap: 30px;
+}
+
+/* Blog Card Styles */
+.blog-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Màu viền trên đầu thẻ để phân biệt chủ đề */
+.net-card { border-top: 4px solid #3498db; }
+.js-card  { border-top: 4px solid #f7df1e; }
+.java-card{ border-top: 4px solid #e74c3c; }
+
+/* Tags */
+.tag {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: fit-content;
+}
+
+.tag-net { background-color: #3498db; }
+.tag-js  { background-color: #f1c40f; color: #333; }
+.tag-java{ background-color: #e74c3c; }
+
+.blog-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.summary {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+/* Hiệu ứng Expand/Collapse */
+details {
+    margin-top: auto; /* Đẩy nút xuống đáy thẻ */
+}
+
+summary.read-more-btn {
+    cursor: pointer;
+    color: #3498db;
+    font-weight: 600;
+    list-style: none; /* Ẩn mũi tên mặc định của trình duyệt */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+summary.read-more-btn:hover {
+    text-decoration: underline;
+}
+
+/* Nội dung chi tiết (Mặc định ẩn, hiện khi bấm) */
+.full-content {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #ddd;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+}
