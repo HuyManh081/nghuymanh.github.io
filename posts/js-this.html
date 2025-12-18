@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Từ khóa this trong JS - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #d4ac0d;">Giải ngố về từ khóa 'this' trong JavaScript</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> JavaScript Core</span> |
+                <span><i class="fas fa-calendar"></i> 01/06/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> Trong các ngôn ngữ như Java hay C++, <code>this</code> luôn trỏ về đối tượng hiện tại (Instance). Nhưng trong JavaScript, <code>this</code> lại là một kẻ "ba phải" - giá trị của nó thay đổi tùy thuộc vào <strong>cách hàm được gọi</strong> (Execution Context). Đây là nguồn gốc của hàng tá lỗi bug.</p>
+
+                <h3>1. Quy tắc cốt lõi: Ai gọi hàm?</h3>
+                <p>Câu thần chú để xác định <code>this</code> là: <em>"Ai là người gọi hàm này?"</em></p>
+
+                <h3>2. Các trường hợp cụ thể</h3>
+
+                <h4>a. Trong Global Scope hoặc Hàm thường</h4>
+                <p>Nếu gọi hàm trơ trọi, <code>this</code> sẽ trỏ về đối tượng toàn cục (Global Object).</p>
+                <ul>
+                    <li>Trên trình duyệt: <code>window</code></li>
+                    <li>Trong Node.js: <code>global</code></li>
+                    <li>Trong <code>"use strict"</code> mode: <code>undefined</code></li>
+                </ul>
+
+                <h4>b. Trong Phương thức của Object (Method Call)</h4>
+                <p>Nếu hàm được gọi từ một object (có dấu chấm <code>.</code>), <code>this</code> chính là object đó.</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+const user = {
+    name: "Mạnh",
+    sayHi() {
+        console.log(this.name);
+    }
+};
+
+user.sayHi(); // In ra "Mạnh" (this là user)
+                </pre>
+
+                <h4>c. Trong Arrow Function (Hàm mũi tên)</h4>
+                <p>Đây là điểm khác biệt lớn nhất! Arrow Function <strong>KHÔNG</strong> có <code>this</code> của riêng nó. Nó sẽ "mượn" <code>this</code> từ phạm vi bao quanh nó (Lexical Scope).</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+const user = {
+    name: "Mạnh",
+    sayHi: () => {
+        console.log(this.name);
+    }
+};
+
+user.sayHi(); // undefined! 
+// Vì Arrow Function không có this, nó lấy this của bên ngoài (là window)
+                </pre>
+                <p><strong>Lời khuyên:</strong> Không dùng Arrow Function để khai báo method cho object.</p>
+
+                <h3>3. Ép buộc 'this' (Explicit Binding)</h3>
+                <p>Đôi khi bạn muốn chỉ định rõ <code>this</code> là ai, bất chấp hoàn cảnh. JS cung cấp 3 hàm:</p>
+                <ul>
+                    <li><code>.call(obj, ...args)</code>: Gọi hàm ngay lập tức, gán <code>this</code> là obj.</li>
+                    <li><code>.apply(obj, [args])</code>: Giống call nhưng truyền tham số dạng mảng.</li>
+                    <li><code>.bind(obj)</code>: Trả về một hàm MỚI với <code>this</code> đã được gán cứng (Thường dùng trong React Class Component cũ).</li>
+                </ul>
+
+                <h3>4. Trong DOM Event Listener</h3>
+                <p>Khi bạn bấm nút, <code>this</code> sẽ trỏ về chính phần tử HTML bị bấm.</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+button.addEventListener('click', function() {
+    console.log(this); // Chính là cái thẻ &lt;button&gt;
+});
+                </pre>
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
