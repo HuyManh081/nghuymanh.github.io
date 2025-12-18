@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giao thức DHCP & Quy trình DORA - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #3498db;">Giao thức DHCP: Cách IP được cấp phát tự động</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> Networking Basics</span> |
+                <span><i class="fas fa-calendar"></i> 23/05/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> Hãy tưởng tượng bạn là quản trị viên của một tòa nhà với 5.000 nhân viên. Nếu mỗi sáng bạn phải đi đến từng bàn làm việc để nhập tay địa chỉ IP cho từng máy tính, bạn sẽ phát điên. <strong>DHCP (Dynamic Host Configuration Protocol)</strong> ra đời để giải quyết vấn đề này bằng cách tự động hóa hoàn toàn việc cấp phát IP.</p>
+
+                <h3>1. DHCP là gì?</h3>
+                <p>DHCP là giao thức hoạt động ở <strong>Lớp 7 (Application Layer)</strong> của mô hình OSI. Nhiệm vụ chính của nó là tự động cung cấp các thông tin cấu hình mạng quan trọng cho thiết bị người dùng (Client), bao gồm:</p>
+                <ul>
+                    <li><strong>IP Address:</strong> Địa chỉ định danh duy nhất.</li>
+                    <li><strong>Subnet Mask:</strong> Để xác định mạng con.</li>
+                    <li><strong>Default Gateway:</strong> Địa chỉ Router để ra Internet.</li>
+                    <li><strong>DNS Server:</strong> Địa chỉ máy chủ phân giải tên miền.</li>
+                </ul>
+
+                <h3>2. Quy trình DORA (Trọng tâm)</h3>
+                <p>Khi bạn cắm dây mạng hoặc kết nối Wi-Fi, một cuộc hội thoại 4 bước sẽ diễn ra giữa Máy tính (Client) và Máy chủ DHCP (Server). Chúng ta gọi tắt là quy trình <strong>DORA</strong>.</p>
+                
+
+                <h4>Bước 1: Discover (Khám phá)</h4>
+                <p>Máy khách (Client) chưa có IP, nó hét lên (Broadcast) vào mạng: <em>"Có ai là DHCP Server ở đây không? Cho tôi xin một IP với!"</em>.</p>
+                <ul>
+                    <li>Gói tin: DHCPDISCOVER</li>
+                    <li>IP nguồn: 0.0.0.0 (Vì chưa có IP)</li>
+                    <li>IP đích: 255.255.255.255 (Gửi cho tất cả mọi người)</li>
+                </ul>
+
+                <h4>Bước 2: Offer (Đề nghị)</h4>
+                <p>DHCP Server nghe thấy lời kêu gọi, nó kiểm tra kho IP (Pool) và trả lời: <em>"Chào, tôi là Server. Tôi có địa chỉ 192.168.1.10 đang rảnh, bạn có muốn lấy không?"</em>.</p>
+                <ul>
+                    <li>Gói tin: DHCPOFFER</li>
+                </ul>
+
+                <h4>Bước 3: Request (Yêu cầu)</h4>
+                <p>Máy khách nhận được lời đề nghị. Nó trả lời lại (thường vẫn là Broadcast để báo cho các Server khác biết nó đã chọn ai): <em>"Ok, tôi đồng ý lấy IP 192.168.1.10 này. Làm ơn gán nó cho tôi."</em>.</p>
+                <ul>
+                    <li>Gói tin: DHCPREQUEST</li>
+                </ul>
+
+                <h4>Bước 4: Acknowledge (Xác nhận)</h4>
+                <p>DHCP Server chốt đơn: <em>"Được rồi, IP 192.168.1.10 chính thức là của bạn. Kèm theo Subnet Mask và Gateway đây. Thời hạn sử dụng (Lease Time) là 8 tiếng nhé."</em>.</p>
+                <ul>
+                    <li>Gói tin: DHCPACK</li>
+                </ul>
+
+                <h3>3. Khái niệm Lease Time (Thời gian thuê bao)</h3>
+                <p>DHCP không cấp IP vĩnh viễn (trừ khi đặt Static Lease). Nó cho "thuê" IP trong một khoảng thời gian nhất định (ví dụ 8 giờ hoặc 24 giờ).</p>
+                <p>Khi hết 50% thời gian thuê, máy Client sẽ âm thầm xin gia hạn (Renew). Điều này giúp thu hồi IP của những thiết bị đã rời khỏi mạng (như khách vãng lai quán cafe) để cấp cho người mới, tránh lãng phí tài nguyên IP.</p>
+
+                <h3>4. DHCP Relay Agent</h3>
+                <p>Vì gói tin DHCP Discover là Broadcast, nó không thể đi qua Router để sang mạng khác. Vậy nếu DHCP Server nằm ở trụ sở chính, còn nhân viên ngồi ở chi nhánh thì sao?</p>
+                <p>Giải pháp là <strong>DHCP Relay Agent</strong>: Một tính năng cấu hình trên Router chi nhánh, giúp "bắt" gói tin Broadcast của nhân viên, chuyển nó thành Unicast và gửi thẳng đến DHCP Server ở trụ sở.</p>
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
