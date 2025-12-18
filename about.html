@@ -3,10 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Về tôi - Nguyễn Huy Mạnh</title>
+    <title>Hồ sơ năng lực - Nguyễn Huy Mạnh</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent-color: #8e44ad; /* Màu tím chủ đạo */
+            --accent-glow: rgba(142, 68, 173, 0.5);
+        }
+        
+        /* Ghi đè các class cũ bằng màu mới */
+        .badge-intro { 
+            background: rgba(142, 68, 173, 0.15); 
+            border-color: rgba(142, 68, 173, 0.3); 
+        }
+        .badge-intro span { color: #a569bd; }
+        
+        .main-name {
+            background: linear-gradient(to right, #ffffff, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .highlight-text { color: #9b59b6; font-style: normal; font-weight: 700; }
+        
+        .s-link:hover { 
+            background: var(--accent-color); 
+            border-color: var(--accent-color); 
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
+        
+        .btn-primary-round { background: var(--accent-color); box-shadow: 0 4px 15px var(--accent-glow); }
+        .btn-primary-round:hover { background: #71368a; }
+        
+        .profile-circle-wrapper { 
+            border-color: var(--accent-color); 
+            box-shadow: 0 0 40px var(--accent-glow); 
+        }
+        
+        .section-title-light::after { background: var(--accent-color); }
+        .net-border { border-bottom-color: var(--accent-color); }
+        .net-border i { color: var(--accent-color); }
+    </style>
 </head>
 <body class="dark-theme">
 
@@ -16,7 +56,7 @@
             <li><a href="index.html">Trang chủ</a></li>
             <li><a href="about.html" class="active">Cá nhân</a></li>
             <li><a href="blog.html">Kiến thức</a></li>
-        
+            <li><a href="contact.html">Liên hệ</a></li>
         </ul>
     </nav>
 
@@ -25,17 +65,18 @@
             
             <div class="about-text-content">
                 <div class="badge-intro">
-                    <span>👋 Xin chào, tôi là Mạnh!</span>
+                    <span><i class="fas fa-user-tag"></i> Developer Profile</span>
                 </div>
                 
                 <h1 class="main-name">Nguyễn Huy Mạnh</h1>
-                <h2 class="sub-title">Software Engineer & Game Developer</h2>
+                <h2 class="sub-title">Software Engineer & Indie Game Dev</h2>
                 
                 <p class="description">
-                    Tôi là sinh viên năm cuối chuyên ngành <strong>Kỹ thuật Phần mềm</strong>. Trái tim tôi luôn chia làm hai nửa: sự logic chặt chẽ của <strong>Hệ thống Mạng</strong> và tư duy sáng tạo của <strong>Game Development</strong>.
+                    Sinh viên năm cuối chuyên ngành <strong>Kỹ thuật Phần mềm</strong> với nền tảng vững chắc về Khoa học máy tính.
                     <br><br>
-                    Tôi thích mày mò cách một gói tin di chuyển qua 7 lớp OSI hay tối ưu hóa thuật toán va chạm trong <strong>Unity 2D</strong>. 
-                    <br>Tư duy: <span class="highlight-text">"Tôi xây dựng những thế giới ảo và kết nối thế giới thực."</span>
+                    Tôi tập trung giải quyết các bài toán về <strong>hiệu năng hệ thống</strong> (Networking) và <strong>trải nghiệm người dùng</strong> (Game Development). Phong cách làm việc của tôi đề cao tính kỷ luật, tư duy logic và khả năng tự học công nghệ mới.
+                    <br><br>
+                    Mục tiêu: <span class="highlight-text">Trở thành Full-stack Developer chuyên nghiệp.</span>
                 </p>
 
                 <div class="social-links-minimal">
@@ -45,8 +86,8 @@
                 </div>
 
                 <div class="cta-group">
-                    <a href="blog.html" class="btn-primary-round">Khám phá Blog →</a>
-                    <a href="contact.html" class="btn-secondary-round">Liên hệ tôi</a>
+                    <a href="certificates/network-basics.pdf" target="_blank" class="btn-primary-round"><i class="fas fa-file-download"></i> Tải CV của tôi</a>
+                    <a href="contact.html" class="btn-secondary-round">Liên hệ hợp tác</a>
                 </div>
             </div>
 
@@ -60,22 +101,22 @@
 
     <main class="container">
         <section class="skills-section-dark">
-            <h2 class="section-title-light">Vũ Khí Công Nghệ</h2>
+            <h2 class="section-title-light">Năng Lực Chuyên Môn</h2>
             <div class="skills-grid-modern">
                 <div class="skill-card-dark unity-border">
                     <i class="fab fa-unity"></i>
-                    <h3>Unity & C#</h3>
-                    <p>Physics, Animation, Level Design và phát triển Indie Game.</p>
+                    <h3>Game Development</h3>
+                    <p>Thành thạo Unity Engine 2D, C# Scripting. Tư duy tốt về Physics, Animation và tối ưu hóa Memory.</p>
                 </div>
                 <div class="skill-card-dark net-border">
                     <i class="fas fa-server"></i>
-                    <h3>Networking</h3>
-                    <p>Mô hình OSI, TCP/IP, CCNA và bảo mật hệ thống mạng.</p>
+                    <h3>System & Network</h3>
+                    <p>Am hiểu mô hình OSI/TCP-IP. Có khả năng cấu hình Routing, Switching và xử lý sự cố mạng cơ bản.</p>
                 </div>
                 <div class="skill-card-dark code-border">
                     <i class="fas fa-laptop-code"></i>
-                    <h3>Programming</h3>
-                    <p>Làm chủ Java Core, JavaScript (ES6+) và quản lý mã nguồn Git.</p>
+                    <h3>Core Programming</h3>
+                    <p>Nắm vững OOP với Java & C++. Kinh nghiệm làm việc với JavaScript (ES6+), Git và Database.</p>
                 </div>
             </div>
         </section>
