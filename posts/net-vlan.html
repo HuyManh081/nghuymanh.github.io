@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLAN & Trunking - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #3498db;">VLAN & Trunking: Chia nhỏ để trị</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> Networking Basics</span> |
+                <span><i class="fas fa-calendar"></i> 25/05/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> Trong mạng LAN truyền thống, tất cả thiết bị cắm vào Switch đều nhìn thấy nhau và nhận được gói tin quảng bá (Broadcast) của nhau. Điều này gây ra hai vấn đề: Bảo mật kém (Phòng Kế toán không muốn IT nhìn thấy dữ liệu) và Hiệu năng giảm (Bão Broadcast). <strong>VLAN (Virtual LAN)</strong> là giải pháp cho vấn đề này.</p>
+
+                <h3>1. VLAN là gì?</h3>
+                <p>VLAN là phương pháp chia nhỏ một Switch vật lý thành nhiều Switch logic (ảo). </p>
+                <p>Thay vì phải mua 3 cái Switch riêng biệt cho 3 phòng ban (Kinh doanh, Kỹ thuật, Giám đốc), ta chỉ cần mua 1 Switch xịn và cấu hình:</p>
+                <ul>
+                    <li>Cổng 1-10 thuộc <strong>VLAN 10</strong> (Kinh doanh).</li>
+                    <li>Cổng 11-20 thuộc <strong>VLAN 20</strong> (Kỹ thuật).</li>
+                    <li>Cổng 21-24 thuộc <strong>VLAN 30</strong> (Giám đốc).</li>
+                </ul>
+                <p><strong>Kết quả:</strong> Máy tính ở VLAN 10 hoàn toàn không thể liên lạc với VLAN 20 (ở Layer 2), giống như chúng đang nối vào 2 Switch khác nhau hoàn toàn vậy.</p>
+                
+
+[Image of VLAN network diagram]
+
+
+                <h3>2. Lợi ích của VLAN</h3>
+                <ul>
+                    <li><strong>Bảo mật:</strong> Cô lập các dữ liệu nhạy cảm.</li>
+                    <li><strong>Hiệu năng:</strong> Giảm kích thước của miền quảng bá (Broadcast Domain), giúp mạng đỡ bị tắc nghẽn bởi các gói tin rác.</li>
+                    <li><strong>Linh hoạt:</strong> Một nhân viên chuyển chỗ ngồi từ tầng 1 lên tầng 2 vẫn có thể giữ nguyên VLAN cũ mà không cần đi lại dây cáp, chỉ cần cấu hình lại cổng Switch.</li>
+                </ul>
+
+                <h3>3. Trunking & Giao thức 802.1Q</h3>
+                <p>Vấn đề phát sinh: Nếu bạn có 2 Switch, và ở cả 2 Switch đều có nhân viên thuộc VLAN 10 và VLAN 20. Làm sao để nối 2 Switch này với nhau?</p>
+                <p>Nếu dùng dây cáp bình thường, Switch sẽ không biết gói tin chạy qua dây đó thuộc VLAN nào. Chúng ta cần một đường kết nối đặc biệt gọi là <strong>Trunk Link</strong>.</p>
+                
+                <h4>Cơ chế Tagging (Gắn thẻ) 802.1Q</h4>
+                <p>Khi một gói tin đi từ Switch A sang Switch B qua đường Trunk, nó sẽ được "đóng dấu" (Tag) thêm một thông tin: <em>"Này, tao là gói tin của VLAN 10 đấy nhé"</em>.</p>
+                <ul>
+                    <li>Switch nhận (Switch B) sẽ đọc cái thẻ này, gỡ bỏ thẻ, và chuyển gói tin đến đúng các cổng thuộc VLAN 10.</li>
+                    <li>Đây là chuẩn quốc tế <strong>IEEE 802.1Q</strong> (gọi tắt là Dot1Q) mà mọi hãng thiết bị mạng (Cisco, Juniper, HP) đều hỗ trợ.</li>
+                </ul>
+
+                <h3>4. Native VLAN</h3>
+                <p>Trên đường Trunk, có một loại VLAN đặc biệt không bị gắn thẻ, gọi là <strong>Native VLAN</strong> (Mặc định thường là VLAN 1). Các gói tin quản trị hệ thống (như CDP, DTP) thường chạy trên Native VLAN này để đảm bảo an toàn.</p>
+
+                <h3>5. Router-on-a-Stick</h3>
+                <p>VLAN chia cắt mạng ra, nhưng nếu Kế toán (VLAN 10) muốn gửi email cho Giám đốc (VLAN 30) thì sao? Layer 2 Switch không làm được.</p>
+                <p>Chúng ta cần một thiết bị Layer 3 (Router) để định tuyến giữa các VLAN (Inter-VLAN Routing). Mô hình phổ biến là dùng một Router nối với Switch qua đường Trunk, gọi là mô hình "Router-on-a-Stick".</p>
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
