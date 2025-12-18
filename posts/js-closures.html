@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closures (Bao đóng) là gì? - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #d4ac0d;">Closures: Ma thuật của JavaScript</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> JavaScript Core</span> |
+                <span><i class="fas fa-calendar"></i> 29/05/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> Closures (Bao đóng) được coi là khái niệm khó hiểu nhất nhưng cũng mạnh mẽ nhất trong JavaScript. Nếu bạn hiểu rõ nó, bạn đã bước một chân sang ranh giới của Senior Developer. Nói ngắn gọn: Closures cho phép một hàm "ghi nhớ" và truy cập các biến ở phạm vi bên ngoài nó, ngay cả khi phạm vi đó đã thực thi xong.</p>
+
+                <h3>1. Lexical Scope (Phạm vi từ vựng)</h3>
+                <p>Trước khi hiểu Closures, bạn cần biết rằng trong JS, hàm con có thể truy cập biến của hàm cha. Đây gọi là Lexical Scoping.</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+function cha() {
+    let qua_tang = "Xe đạp";
+    
+    function con() {
+        console.log(qua_tang); // Con dùng được đồ của Cha
+    }
+    con();
+}
+cha(); // In ra "Xe đạp"
+                </pre>
+
+                <h3>2. Closures hoạt động thế nào?</h3>
+                <p>Điều kỳ diệu xảy ra khi hàm cha <strong>return</strong> hàm con ra ngoài.</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+function taoTaiKhoan() {
+    let soDu = 1000; // Biến local của hàm cha
+
+    return function rutTien(soTien) {
+        soDu -= soTien;
+        console.log(`Còn lại: ${soDu}`);
+    }
+}
+
+const giaoDich = taoTaiKhoan(); 
+// Lúc này hàm taoTaiKhoan() đã chạy xong, biến soDu LẼ RA phải bị xóa khỏi bộ nhớ.
+// NHƯNG KHÔNG! Closures giữ lại nó.
+
+giaoDich(200); // In ra: Còn lại 800
+giaoDich(100); // In ra: Còn lại 700
+                </pre>
+                <p>Trong ví dụ trên, biến <code>soDu</code> được "bao đóng" (closed over) bên trong hàm <code>giaoDich</code>. Không ai bên ngoài có thể truy cập trực tiếp vào <code>soDu</code> được.</p>
+
+                <h3>3. Ứng dụng thực tế: Data Encapsulation (Tính đóng gói)</h3>
+                <p>Java có <code>private</code> variable, JavaScript (trước đây) không có. Chúng ta dùng Closures để giả lập biến private, giúp bảo mật dữ liệu.</p>
+                <p>Ví dụ: Bạn không muốn người khác sửa biến <code>soDu</code> tùy tiện (như <code>soDu = 1000000</code>), họ bắt buộc phải dùng hàm <code>rutTien</code> mà bạn cung cấp. Đó là sức mạnh của Closures.</p>
+
+                <h3>4. Cạm bẫy Memory Leak</h3>
+                <p>Vì Closures giữ tham chiếu đến các biến cũ không cho bộ nhớ giải phóng (Garbage Collection), nên nếu lạm dụng quá nhiều Closures không cần thiết, ứng dụng của bạn có thể bị tốn RAM (Memory Leak).</p>
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
