@@ -910,18 +910,26 @@ body.dark-theme {
         transform: translateY(-5px); /* Trên mobile thì trượt lên */
     }
 }
-/* ================= BÀI VIẾT NỔI BẬT (INDEX - NEW STYLE) ================= */
+/* ================= BÀI VIẾT NỔI BẬT (INDEX - ALIGNED) ================= */
 
 .featured-section {
-    margin-top: 100px;
+    margin-top: 80px;
     padding-top: 50px;
-    border-top: 1px solid #eaeaea; /* Đường kẻ phân cách nhẹ */
+    border-top: 1px solid #eaeaea;
 }
 
+/* 1. Căn giữa Tiêu đề mục */
+.featured-section .section-title {
+    text-align: center; /* Căn giữa chữ "Bài viết nổi bật" */
+    margin-bottom: 40px;
+}
+
+/* 2. Chỉnh Grid thành 3 cột đều nhau (Khớp với phần Chứng chỉ ở trên) */
 .featured-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+    /* Thay auto-fit bằng 3 cột cứng để thẳng hàng với giao diện trên */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; /* Khoảng cách giữa các thẻ */
     margin-bottom: 50px;
 }
 
@@ -930,13 +938,14 @@ body.dark-theme {
     background: white;
     border-radius: 20px;
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Hiệu ứng nảy */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid #f0f0f0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     position: relative;
+    height: 100%; /* Đảm bảo các thẻ cao bằng nhau */
 }
 
 .feat-card:hover {
@@ -952,7 +961,7 @@ body.dark-theme {
     flex-direction: column;
 }
 
-/* Phần đầu Card: Icon & Tag */
+/* Header: Icon & Tag */
 .feat-header {
     display: flex;
     justify-content: space-between;
@@ -982,10 +991,10 @@ body.dark-theme {
     color: #555;
 }
 
-/* Phần nội dung Text */
+/* Nội dung Text */
 .feat-card h3 {
     color: #2c3e50;
-    font-size: 1.4rem;
+    font-size: 1.3rem; /* Chỉnh lại font size cho cân đối */
     margin-bottom: 12px;
     line-height: 1.4;
     font-weight: 700;
@@ -993,13 +1002,13 @@ body.dark-theme {
 
 .feat-card p {
     color: #7f8c8d;
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 25px;
-    flex-grow: 1; /* Đẩy footer xuống đáy */
+    flex-grow: 1; 
 }
 
-/* Phần chân Card: Đọc tiếp & Mũi tên */
+/* Footer: Đọc tiếp */
 .feat-footer {
     display: flex;
     align-items: center;
@@ -1009,32 +1018,23 @@ body.dark-theme {
     font-size: 0.95rem;
 }
 
-.feat-arrow {
-    transition: transform 0.3s ease;
-}
-
-.feat-card:hover .feat-arrow {
-    transform: translateX(5px);
-}
+.feat-arrow { transition: transform 0.3s ease; }
+.feat-card:hover .feat-arrow { transform: translateX(5px); }
 
 /* --- MÀU SẮC THEO CHỦ ĐỀ --- */
-
-/* Mạng máy tính (Xanh Dương) */
 .net-theme .feat-icon { background: rgba(52, 152, 219, 0.1); color: #3498db; }
 .net-theme .feat-footer { color: #3498db; }
 .net-theme:hover .feat-icon { background: #3498db; color: white; }
 
-/* JavaScript (Vàng) */
 .js-theme .feat-icon { background: rgba(241, 196, 15, 0.1); color: #f1c40f; }
 .js-theme .feat-footer { color: #d4ac0d; }
 .js-theme:hover .feat-icon { background: #f1c40f; color: white; }
 
-/* Java (Đỏ) */
 .java-theme .feat-icon { background: rgba(231, 76, 60, 0.1); color: #e74c3c; }
 .java-theme .feat-footer { color: #e74c3c; }
 .java-theme:hover .feat-icon { background: #e74c3c; color: white; }
 
-/* Nút Xem tất cả (Style mới) */
+/* Nút Xem tất cả (Căn giữa) */
 .view-all-wrapper {
     text-align: center;
     margin-top: 40px;
@@ -1043,7 +1043,7 @@ body.dark-theme {
 .btn-view-all {
     display: inline-flex;
     align-items: center;
-    padding: 14px 40px;
+    padding: 14px 50px; /* Nút dài hơn một chút cho đẹp */
     background: #2c3e50;
     color: white;
     border-radius: 50px;
@@ -1062,7 +1062,13 @@ body.dark-theme {
 .btn-view-all i { margin-left: 10px; }
 
 /* Responsive Mobile */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+    /* Trên iPad thì về 2 cột */
+    .featured-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    /* Trên điện thoại thì về 1 cột */
     .featured-grid { grid-template-columns: 1fr; }
     .feat-card-inner { padding: 25px; }
 }
