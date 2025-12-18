@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JVM, JRE và JDK - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #e74c3c;">Phân biệt JVM, JRE và JDK dễ hiểu nhất</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> Java Core</span> |
+                <span><i class="fas fa-calendar"></i> 03/06/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> Khi mới học Java, bạn sẽ bị "xoay như chong chóng" bởi các thuật ngữ viết tắt: JVM, JRE, JDK. Chúng khác nhau thế nào? Tại sao tôi tải JDK mà trong đó lại có JRE? Bài viết này sẽ giúp bạn làm sáng tỏ mọi thứ.</p>
+
+                <h3>1. Tổng quan mối quan hệ</h3>
+                <p>Hãy tưởng tượng mối quan hệ bao hàm như những chiếc hộp lồng vào nhau:</p>
+                <div style="background: #fff3cd; padding: 20px; border-radius: 8px; text-align: center; border: 2px dashed #e74c3c; margin-bottom: 20px;">
+                    <strong>JDK</strong> 
+                    <br> (Chứa JRE + Công cụ phát triển)
+                    <div style="background: #d4edda; padding: 15px; margin-top: 10px; border-radius: 5px; border: 2px dashed #28a745;">
+                        <strong>JRE</strong> 
+                        <br> (Chứa JVM + Thư viện chuẩn)
+                        <div style="background: #cce5ff; padding: 10px; margin-top: 10px; border-radius: 5px; border: 2px dashed #007bff;">
+                            <strong>JVM</strong> 
+                            <br> (Máy ảo Java)
+                        </div>
+                    </div>
+                </div>
+
+                <h3>2. JVM (Java Virtual Machine) - Máy ảo Java</h3>
+                <p>Đây là "trái tim" của Java. JVM là một chương trình phần mềm mô phỏng một máy tính thật.</p>
+                <ul>
+                    <li><strong>Nhiệm vụ:</strong> Nó không hiểu code Java bạn viết (file .java). Nó chỉ hiểu <strong>Bytecode</strong> (file .class). Nhiệm vụ của nó là dịch Bytecode này thành mã máy (Machine Code) để hệ điều hành (Windows/Mac/Linux) có thể chạy được.</li>
+                    <li><strong>Tại sao cần JVM?</strong> Nhờ JVM mà Java có tính năng <em>"Write Once, Run Anywhere"</em>. Bạn viết code trên Windows, biên dịch ra Bytecode. Mang file Bytecode đó sang Mac hay Linux, chỉ cần máy đó có JVM cài sẵn là chạy được ngay.</li>
+                </ul>
+
+                <h3>3. JRE (Java Runtime Environment) - Môi trường chạy</h3>
+                <p>JRE là bộ phần mềm cần thiết để <strong>CHẠY</strong> một ứng dụng Java (nhưng không dùng để lập trình).</p>
+                <ul>
+                    <li><strong>Thành phần:</strong> JRE = JVM + Các thư viện thư viện chuẩn (Java Class Libraries) + Các file cấu hình.</li>
+                    <li><strong>Đối tượng sử dụng:</strong> Người dùng cuối (End-User). Ví dụ: Bạn muốn chơi game Minecraft (viết bằng Java), bạn chỉ cần cài JRE là đủ.</li>
+                </ul>
+
+                <h3>4. JDK (Java Development Kit) - Bộ công cụ phát triển</h3>
+                <p>JDK là bộ công cụ đầy đủ dành cho <strong>Lập trình viên</strong>.</p>
+                <ul>
+                    <li><strong>Thành phần:</strong> JDK = JRE + Các công cụ phát triển (Compiler <code>javac</code>, Debugger, Javadoc...).</li>
+                    <li><strong>Đối tượng sử dụng:</strong> Developer. Nếu bạn muốn viết code và biên dịch nó, bạn bắt buộc phải cài JDK.</li>
+                </ul>
+
+                <h3>5. Tóm lại</h3>
+                <table border="1" cellpadding="10" cellspacing="0" style="width:100%; border-collapse: collapse; margin-top: 15px;">
+                    <thead style="background-color: #f2f2f2;">
+                        <tr>
+                            <th>Thuật ngữ</th>
+                            <th>Tên đầy đủ</th>
+                            <th>Vai trò chính</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>JVM</strong></td>
+                            <td>Java Virtual Machine</td>
+                            <td>Dịch Bytecode thành mã máy để chạy trên từng OS cụ thể.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>JRE</strong></td>
+                            <td>Java Runtime Environment</td>
+                            <td>Môi trường để chạy ứng dụng (Dành cho User).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>JDK</strong></td>
+                            <td>Java Development Kit</td>
+                            <td>Bộ đồ nghề để viết và biên dịch code (Dành cho Dev).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
