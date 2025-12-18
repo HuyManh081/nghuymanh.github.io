@@ -245,3 +245,88 @@ body {
         font-size: 1.2rem;
     }
 }
+/* --- PHẦN TIÊU ĐỀ CHUNG --- */
+.section-title {
+    text-align: center;         /* Căn giữa tiêu đề */
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #333;
+    margin: 50px 0 30px;        /* Khoảng cách trên dưới */
+    text-transform: uppercase;  /* Chữ in hoa */
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%); /* Kỹ thuật căn giữa tuyệt đối */
+}
+
+/* Kẻ gạch chân trang trí dưới tiêu đề */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #3498db;        /* Màu xanh chủ đạo */
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* --- LƯỚI CHỨA CÁC THẺ (GRID) --- */
+.cert-grid {
+    display: grid;
+    /* Tự động chia cột: Màn hình rộng 3 cột, nhỏ thì 1-2 cột */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px;                  /* Khoảng cách giữa các thẻ */
+    padding: 0 20px 60px;       /* Khoảng cách lề trong */
+    max-width: 1200px;
+    margin: 0 auto;             /* Căn giữa cả khối lưới */
+}
+
+/* --- GIAO DIỆN TỪNG THẺ (CARD) --- */
+.cert-card {
+    background-color: #ffffff;
+    border-radius: 16px;        /* Bo tròn góc mềm mại */
+    padding: 40px 30px;
+    text-align: center;         /* Căn giữa nội dung bên trong */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Đổ bóng nhẹ tạo chiều sâu */
+    border: 1px solid rgba(0,0,0,0.05); /* Viền mờ */
+    transition: all 0.3s ease;  /* Hiệu ứng mượt mà */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;           /* Ẩn phần thừa nếu có */
+}
+
+/* Hiệu ứng khi di chuột vào thẻ */
+.cert-card:hover {
+    transform: translateY(-10px); /* Bay lên cao chút */
+    box-shadow: 0 20px 40px rgba(52, 152, 219, 0.2); /* Bóng màu xanh */
+    border-color: #3498db;
+}
+
+/* Icon (Router, PC, Server) */
+.card-icon {
+    font-size: 3.5rem;          /* Icon to rõ */
+    color: #3498db;
+    margin-bottom: 25px;
+    background: #f0f8ff;        /* Nền tròn mờ sau icon */
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;         /* Căn giữa icon */
+}
+
+/* Tên chứng chỉ */
+.cert-card h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* Mô tả */
+.cert-card p {
+    color: #666;
+    font-size: 0.
