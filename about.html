@@ -3,35 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ - Profile Nguyễn Huy Mạnh</title>
+    <title>Về tôi - Nguyễn Huy Mạnh</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <nav class="navbar">
         <div class="logo">Nguyễn Huy Mạnh</div>
         <ul class="nav-links">
-            <li><a href="index.html" class="active">Trang chủ</a></li>
-            <li><a href="about.html">Cá nhân</a></li>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="about.html" class="active">Cá nhân</a></li>
             <li><a href="blog.html">Kiến thức</a></li>
-            
+            <li><a href="contact.html">Liên hệ</a></li>
         </ul>
     </nav>
-<body>
-    <main class="container">
-        <h1>Giới thiệu bản thân</h1>
-        <div class="profile-section">
-            <p>Chào bạn, tôi là một người đam mê công nghệ mạng và lập trình.</p>
-            <p>Mục tiêu của tôi là trở thành một <strong>Network Automation Engineer</strong>, kết hợp sức mạnh của hạ tầng mạng (Cisco) và tư duy lập trình (JavaScript/Node.js).</p>
-            
-            <h3>Sở thích</h3>
-            <ul>
-                <li>Cấu hình Lab trên Packet Tracer</li>
-                <li>Viết code Node.js</li>
-                <li>Nghiên cứu về IoT</li>
-            </ul>
+
+    <header class="about-header">
+        <div class="container">
+            <h1>Hành Trình Của Tôi</h1>
+            <p>Từ những dòng lệnh Console khô khan đến thế giới Game đầy màu sắc</p>
         </div>
-    </main>
-</body>
-</html>
+    </header>
+
+    <main class="container">
+        <div class="about-content-wrapper">
+            
+            <div class="about-image-col">
+                <div class="image-frame">
+                    <img src="images/profile.jpg" alt="Nguyễn Huy Mạnh" class="about-img">
+                </div>
+                <div class="mini-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-code-branch"></i>
+                        <span>Game Dev</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Network Eng</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-text-col">
+                <h2>👋 Xin chào, tôi là Mạnh!</h2>
+                <p class="bio-text">
+                    Tôi là một sinh viên năm cuối chuyên ngành Kỹ thuật Phần mềm, nhưng trái tim tôi luôn chia làm hai nửa: một nửa dành cho sự logic chặt chẽ của <strong>Hệ thống Mạng & Backend</strong>, nửa còn lại bay bổng với tư duy sáng tạo của <strong>Game Development</strong>.
+                </p>
+                <p class="bio-text">
+                    Trong khi bạn bè vùi đầu vào Web App, tôi lại thích mày mò cách một gói tin di chuyển qua 7 lớp OSI, hay làm sao để tối ưu hóa một thuật toán va chạm trong Unity 2D.
+                </p>
+                
+                <div class="quote-box">
+                    "Tôi không chỉ viết code. Tôi xây dựng những thế giới ảo và kết nối thế giới thực."
+                </div>
+
+                <h3>Mục tiêu của tôi</h3>
+                <ul class="goal-list">
+                    <li><i class="fas fa-check-circle"></i> Trở thành Full-stack Developer am hiểu hạ tầng mạng.</li>
+                    <li><i class="fas fa-check-circle"></i> Phát triển Indie Game có chiều sâu về cốt truyện.</li>
+                    <li><i class="fas fa-check-circle"></i> Chia sẻ kiến thức phức tạp theo cách đơn giản nhất.</li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="skills-section">
+            <h2 class="section-title">Vũ Khí Công Nghệ (Tech Stack)</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-card unity-style">
