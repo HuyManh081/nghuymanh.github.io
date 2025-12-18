@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise & Async/Await - Huy Mạnh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Huy Mạnh</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="../about.html">Cá nhân</a></li>
+            <li><a href="../blog.html" class="active">Bài viết</a></li>
+            <li><a href="../contact.html">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="margin: 20px 0;">
+            <a href="../blog.html" style="text-decoration: none; color: #666;">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
+        <article class="post-content">
+            <h1 style="color: #d4ac0d;">Từ Callback Hell đến Async/Await</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-user"></i> Huy Mạnh</span> | 
+                <span><i class="fas fa-folder"></i> JavaScript Core</span> |
+                <span><i class="fas fa-calendar"></i> 28/05/2024</span>
+            </div>
+
+            <div class="post-body">
+                <p><strong>Giới thiệu:</strong> Xử lý bất đồng bộ (Asynchronous) là kỹ năng quan trọng nhất khi làm việc với API, Database. Trong quá khứ, chúng ta dùng Callback và rơi vào "địa ngục" Callback Hell. ES6 mang đến Promise và ES7 mang đến Async/Await để cứu rỗi các lập trình viên.</p>
+
+                <h3>1. Vấn đề của Callback (Callback Hell)</h3>
+                <p>Tưởng tượng bạn cần làm 3 việc tuần tự: Lấy User -> Lấy Bài viết của User đó -> Lấy Comment của bài viết. Code cũ sẽ trông như hình tam giác:</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+getUser(function(user) {
+    getPosts(user.id, function(posts) {
+        getComments(posts[0].id, function(comments) {
+            // Code thụt lề quá sâu, khó đọc, khó debug
+        });
+    });
+});
+                </pre>
+
+                <h3>2. Promise (Lời hứa)</h3>
+                <p>Promise đại diện cho một giá trị chưa có ở hiện tại nhưng sẽ có trong tương lai (hoặc thất bại). Nó có 3 trạng thái:</p>
+                <ul>
+                    <li><strong>Pending:</strong> Đang chờ kết quả.</li>
+                    <li><strong>Fulfilled:</strong> Thành công (Resolve).</li>
+                    <li><strong>Rejected:</strong> Thất bại (Reject).</li>
+                </ul>
+                <p>Promise giúp code phẳng hơn nhờ chuỗi <code>.then()</code>:</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+getUser()
+    .then(user => getPosts(user.id))
+    .then(posts => getComments(posts[0].id))
+    .catch(error => console.log(error));
+                </pre>
+
+                <h3>3. Async/Await (Cú pháp đường mật)</h3>
+                <p>Được giới thiệu trong ES7, Async/Await thực chất được xây dựng trên nền tảng của Promise, nhưng nó cho phép ta viết code bất đồng bộ trông y hệt như code đồng bộ (Synchronous).</p>
+                
+                <h4>Ưu điểm vượt trội:</h4>
+                <ul>
+                    <li>Code chạy tuần tự từ trên xuống dưới, cực kỳ dễ đọc.</li>
+                    <li>Dùng <code>try/catch</code> truyền thống để bắt lỗi.</li>
+                </ul>
+
+                <p><em>Ví dụ viết lại đoạn code trên bằng Async/Await:</em></p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
+async function main() {
+    try {
+        const user = await getUser();
+        const posts = await getPosts(user.id);
+        const comments = await getComments(posts[0].id);
+        console.log(comments);
+    } catch (error) {
+        console.error("Có lỗi xảy ra:", error);
+    }
+}
+                </pre>
+                <p>Từ khóa <code>await</code> sẽ tạm dừng hàm lại, chờ cho Promise phía sau giải quyết xong (Resolve) rồi mới chạy dòng tiếp theo. Điều này giúp tư duy lập trình trở nên tự nhiên hơn rất nhiều.</p>
+            </div>
+
+        </article>
+    </main>
+
+</body>
+</html>
