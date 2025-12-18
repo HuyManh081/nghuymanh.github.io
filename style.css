@@ -486,13 +486,10 @@ body {
     .hero-image-wrapper { width: 70%; max-width: 300px; }
     .hero-name { font-size: 2.5rem; }
 }
-/* --- ABOUT HERO SECTION --- */
+/* --- GIAO DIỆN ABOUT HIỆN ĐẠI (DARK THEME) --- */
 .about-hero {
-    background-color: #0a0a0a; /* Nền đen sâu */
-    padding: 100px 0;
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
+    background-color: #0d0d0d; /* Nền tối sâu */
+    padding: 80px 0;
     color: white;
 }
 
@@ -500,64 +497,77 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
 }
 
-/* Badge "Xin chào" */
+/* Badge giới thiệu */
 .badge-intro {
-    background: rgba(52, 152, 219, 0.15);
+    background: rgba(52, 152, 219, 0.1);
     border: 1px solid rgba(52, 152, 219, 0.3);
-    padding: 6px 15px;
+    padding: 8px 18px;
     border-radius: 50px;
     display: inline-block;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
-.badge-intro span {
-    font-size: 0.9rem;
-    color: #3498db;
-    font-weight: 500;
-}
+.badge-intro span { color: #3498db; font-size: 0.9rem; font-weight: 600; }
 
-/* Text Styles */
-.main-name {
-    font-size: 4rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-    letter-spacing: -1px;
-}
+/* Tên và Tiêu đề */
+.main-name { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; }
+.sub-title { font-size: 1.4rem; color: #888; margin-bottom: 25px; font-weight: 400; }
+.description { color: #aaa; line-height: 1.7; margin-bottom: 35px; max-width: 550px; }
 
-.sub-title {
-    font-size: 1.5rem;
-    color: #888;
-    margin-bottom: 30px;
-    font-weight: 400;
-}
-
-.description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #ccc;
-    max-width: 600px;
-    margin-bottom: 30px;
-}
-
-.highlight-text {
-    color: #3498db;
-    font-style: italic;
-}
-
-/* Ảnh tròn có viền Glow (Giống ảnh mẫu) */
+/* Ảnh tròn có viền Glow màu xanh */
 .profile-circle-wrapper {
-    position: relative;
-    width: 400px;
-    height: 400px;
+    width: 380px;
+    height: 380px;
     border-radius: 50%;
-    padding: 10px;
-    /* Viền xanh neon mờ */
     border: 4px solid #3498db;
-    box-shadow: 0 0 30px rgba(52, 152, 219, 0.4);
+    padding: 8px;
+    box-shadow: 0 0 25px rgba(52, 152, 219, 0.5); /* Hiệu ứng tỏa sáng */
+}
+.profile-circle-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+/* Nút mạng xã hội */
+.social-links-minimal { display: flex; gap: 15px; margin-bottom: 40px; }
+.s-link {
+    width: 45px; height: 45px; background: #222; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; text-decoration: none; transition: 0.3s;
+}
+.s-link:hover { background: #3498db; transform: translateY(-5px); }
+
+/* Nút hành động bo tròn */
+.btn-primary-round {
+    background: #3498db; color: white; padding: 12px 30px;
+    border-radius: 50px; text-decoration: none; font-weight: 600; margin-right: 15px;
+}
+.btn-secondary-round {
+    border: 1px solid #444; color: white; padding: 12px 30px;
+    border-radius: 50px; text-decoration: none;
 }
 
+/* Phần Kỹ năng kiểu Dark */
+.skills-section-dark { padding: 60px 0; background: #0d0d0d; }
+.section-title-light { color: white; text-align: center; margin-bottom: 40px; font-size: 2rem; }
+.skills-grid-modern { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+.skill-card-dark {
+    background: #1a1a1a; padding: 30px; border-radius: 15px; text-align: center;
+    color: #ccc; transition: 0.3s;
+}
+.skill-card-dark i { font-size: 2.5rem; margin-bottom: 15px; color: #3498db; }
+.skill-card-dark h3 { color: white; margin-bottom: 10px; }
+
+/* Border màu cho từng card */
+.unity-border { border-bottom: 4px solid #fff; }
+.net-border { border-bottom: 4px solid #3498db; }
+.code-border { border-bottom: 4px solid #f1c40f; }
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .about-flex-container { flex-direction: column-reverse; text-align: center; }
+    .profile-circle-wrapper { width: 280px; height: 280px; }
+    .social-links-minimal { justify-content: center; }
+}
 .profile-circle-img {
     width: 100%;
     height: 100%;
