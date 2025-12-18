@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dark-theme">
 
     <nav class="navbar">
         <div class="logo">Nguyễn Huy Mạnh</div>
@@ -16,60 +16,70 @@
             <li><a href="index.html">Trang chủ</a></li>
             <li><a href="about.html" class="active">Cá nhân</a></li>
             <li><a href="blog.html">Kiến thức</a></li>
-   
+        
         </ul>
     </nav>
 
-    <header class="about-header">
-        <div class="container">
-            <h1>Hành Trình Của Tôi</h1>
-            <p>Từ những dòng lệnh Console khô khan đến thế giới Game đầy màu sắc</p>
+    <header class="about-hero">
+        <div class="container about-flex-container">
+            
+            <div class="about-text-content">
+                <div class="badge-intro">
+                    <span>👋 Xin chào, tôi là Mạnh!</span>
+                </div>
+                
+                <h1 class="main-name">Nguyễn Huy Mạnh</h1>
+                <h2 class="sub-title">Software Engineer & Game Developer</h2>
+                
+                <p class="description">
+                    Tôi là sinh viên năm cuối chuyên ngành <strong>Kỹ thuật Phần mềm</strong>. Trái tim tôi luôn chia làm hai nửa: sự logic chặt chẽ của <strong>Hệ thống Mạng</strong> và tư duy sáng tạo của <strong>Game Development</strong>.
+                    <br><br>
+                    Tôi thích mày mò cách một gói tin di chuyển qua 7 lớp OSI hay tối ưu hóa thuật toán va chạm trong <strong>Unity 2D</strong>. 
+                    <br>Tư duy: <span class="highlight-text">"Tôi xây dựng những thế giới ảo và kết nối thế giới thực."</span>
+                </p>
+
+                <div class="social-links-minimal">
+                    <a href="https://github.com/huymanh081" target="_blank" class="s-link"><i class="fab fa-github"></i></a>
+                    <a href="https://facebook.com/nguyenmanh0801" target="_blank" class="s-link"><i class="fab fa-facebook"></i></a>
+                    <a href="mailto:nghuymanh080104@gmail.com" class="s-link"><i class="fas fa-envelope"></i></a>
+                </div>
+
+                <div class="cta-group">
+                    <a href="blog.html" class="btn-primary-round">Khám phá Blog →</a>
+                    <a href="contact.html" class="btn-secondary-round">Liên hệ tôi</a>
+                </div>
+            </div>
+
+            <div class="about-image-content">
+                <div class="profile-circle-wrapper">
+                    <img src="images/profile.jpg" alt="Nguyễn Huy Mạnh" class="profile-circle-img">
+                </div>
+            </div>
         </div>
     </header>
 
     <main class="container">
-        <div class="about-content-wrapper">
-            
-            <div class="about-image-col">
-                <div class="image-frame">
-                    <img src="images/profile.jpg" alt="Nguyễn Huy Mạnh" class="about-img">
+        <section class="skills-section-dark">
+            <h2 class="section-title-light">Vũ Khí Công Nghệ</h2>
+            <div class="skills-grid-modern">
+                <div class="skill-card-dark unity-border">
+                    <i class="fab fa-unity"></i>
+                    <h3>Unity & C#</h3>
+                    <p>Physics, Animation, Level Design và phát triển Indie Game.</p>
                 </div>
-                <div class="mini-stats">
-                    <div class="stat-item">
-                        <i class="fas fa-code-branch"></i>
-                        <span>Game Dev</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-network-wired"></i>
-                        <span>Network Eng</span>
-                    </div>
+                <div class="skill-card-dark net-border">
+                    <i class="fas fa-server"></i>
+                    <h3>Networking</h3>
+                    <p>Mô hình OSI, TCP/IP, CCNA và bảo mật hệ thống mạng.</p>
+                </div>
+                <div class="skill-card-dark code-border">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Programming</h3>
+                    <p>Làm chủ Java Core, JavaScript (ES6+) và quản lý mã nguồn Git.</p>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="about-text-col">
-                <h2>👋 Xin chào, tôi là Mạnh!</h2>
-                <p class="bio-text">
-                    Tôi là một sinh viên năm cuối chuyên ngành Kỹ thuật Phần mềm, nhưng trái tim tôi luôn chia làm hai nửa: một nửa dành cho sự logic chặt chẽ của <strong>Hệ thống Mạng & Backend</strong>, nửa còn lại bay bổng với tư duy sáng tạo của <strong>Game Development</strong>.
-                </p>
-                <p class="bio-text">
-                    Trong khi bạn bè vùi đầu vào Web App, tôi lại thích mày mò cách một gói tin di chuyển qua 7 lớp OSI, hay làm sao để tối ưu hóa một thuật toán va chạm trong Unity 2D.
-                </p>
-                
-                <div class="quote-box">
-                    "Tôi không chỉ viết code. Tôi xây dựng những thế giới ảo và kết nối thế giới thực."
-                </div>
-
-                <h3>Mục tiêu của tôi</h3>
-                <ul class="goal-list">
-                    <li><i class="fas fa-check-circle"></i> Trở thành Full-stack Developer am hiểu hạ tầng mạng.</li>
-                    <li><i class="fas fa-check-circle"></i> Phát triển Indie Game có chiều sâu về cốt truyện.</li>
-                    <li><i class="fas fa-check-circle"></i> Chia sẻ kiến thức phức tạp theo cách đơn giản nhất.</li>
-                </ul>
-            </div>
-        </div>
-
-        <section class="skills-section">
-            <h2 class="section-title">Vũ Khí Công Nghệ (Tech Stack)</h2>
-            <div class="skills-grid">
-                
-                <div class="skill-card unity-style">
+</body>
+</html>
