@@ -1,0 +1,69 @@
+<div class="post-body">
+    <p><strong>Giới thiệu:</strong> Subnetting (Chia mạng con) là kỹ năng "sống còn" của một Network Engineer. Nếu không chia mạng, một công ty với 10.000 nhân viên sẽ nằm chung trong một Broadcast Domain khổng lồ, dẫn đến tắc nghẽn mạng ngay lập tức.</p>
+
+    <h3>1. Cấu trúc địa chỉ IPv4</h3>
+    <p>Một địa chỉ IPv4 có độ dài <strong>32 bit</strong>, được chia thành 4 nhóm (octets), mỗi nhóm 8 bit, ngăn cách nhau bởi dấu chấm. Ví dụ: <code>192.168.1.1</code>.</p>
+    
+    <ul>
+        <li><strong>Network Portion (Phần Mạng):</strong> Định danh mạng lưới (Giống như tên đường phố).</li>
+        <li><strong>Host Portion (Phần Host):</strong> Định danh thiết bị cụ thể (Giống như số nhà).</li>
+    </ul>
+
+    <h3>2. Subnet Mask & CIDR</h3>
+    <p>Làm sao máy tính biết đâu là phần Mạng, đâu là phần Host? Nó dựa vào <strong>Subnet Mask</strong>.</p>
+    <p>Subnet Mask là một chuỗi 32 bit, trong đó các bit 1 liên tiếp đại diện cho phần Network, và các bit 0 đại diện cho phần Host.</p>
+    <ul>
+        <li>Ví dụ: <code>255.255.255.0</code> tương đương với <code>/24</code> (24 bit đầu tiên là 1).</li>
+        <li>Ký hiệu <code>/24</code>, <code>/16</code> được gọi là <strong>CIDR (Classless Inter-Domain Routing)</strong>.</li>
+    </ul>
+
+    <h3>3. Hướng dẫn tính toán Subnetting (Ví dụ thực tế)</h3>
+    <p>Hãy cùng giải bài toán sau: Cho địa chỉ IP <strong>192.168.10.50/26</strong>. Hãy xác định:</p>
+    <ol>
+        <li>Network Address (Địa chỉ mạng)</li>
+        <li>Broadcast Address (Địa chỉ quảng bá)</li>
+        <li>Range IP (Dải IP khả dụng cho thiết bị)</li>
+    </ol>
+
+    <h4>Bước 1: Chuyển đổi sang Nhị phân (Binary)</h4>
+    <p>IP: <code>192.168.10.50</code> <br>
+    Binary: <code>11000000.10101000.00001010.00110010</code></p>
+    
+    <p>Subnet Mask (/26): 26 số 1 liên tiếp.<br>
+    Binary: <code>11111111.11111111.11111111.11000000</code><br>
+    Decimal: <code>255.255.255.192</code></p>
+
+    <h4>Bước 2: Tính Network Address (Phép toán AND)</h4>
+    <p>Ta thực hiện phép AND giữa IP và Subnet Mask (1 AND 1 = 1, còn lại = 0).</p>
+    <div style="background: #f4f4f4; padding: 15px; border-radius: 5px; font-family: monospace;">
+        IP:   11000000.10101000.00001010.00110010<br>
+        Mask: 11111111.11111111.11111111.11000000<br>
+        -----------------------------------------<br>
+        Net:  11000000.10101000.00001010.00000000<br>
+        Result: <strong>192.168.10.0</strong>
+    </div>
+
+    <h4>Bước 3: Tính Broadcast Address</h4>
+    <p>Giữ nguyên phần Network, chuyển toàn bộ phần Host (các bit 0 trong mask) thành 1.</p>
+    <div style="background: #f4f4f4; padding: 15px; border-radius: 5px; font-family: monospace;">
+        Net:  11000000.10101000.00001010.00<strong>000000</strong><br>
+        (Phần Host là 6 bit cuối cùng)<br>
+        Broad:11000000.10101000.00001010.00<strong>111111</strong><br>
+        Result: <strong>192.168.10.63</strong>
+    </div>
+
+    <h4>Bước 4: Xác định dải IP khả dụng</h4>
+    <ul>
+        <li><strong>First Host:</strong> Network Address + 1 = <code>192.168.10.1</code></li>
+        <li><strong>Last Host:</strong> Broadcast Address - 1 = <code>192.168.10.62</code></li>
+    </ul>
+
+    <h3>4. Công thức tính nhanh số lượng Host</h3>
+    <p>Số lượng IP dùng được trong một Subnet được tính bằng công thức:</p>
+    <p style="text-align: center; font-size: 1.2rem; font-weight: bold; color: #e74c3c;">
+        Số Host = 2<sup>h</sup> - 2
+    </p>
+    <p>Trong đó <strong>h</strong> là số bit 0 trong Subnet Mask. (Trừ 2 là trừ địa chỉ Network và Broadcast).</p>
+    <p><em>Ví dụ với /26:</em> Còn lại 32 - 26 = 6 bit Host. <br>
+    => Số Host = 2<sup>6</sup> - 2 = 64 - 2 = <strong>62 máy</strong>.</p>
+</div>
